@@ -36,12 +36,14 @@ class UserForm extends React.Component {
       <form>
         <label>Gender</label>
         <input
+        required
         type="text"
         value={this.state.gender}>
         </input>
 
         <label>Age</label>
         <input
+        required
         type="number"
         min="18"
         max="100"
@@ -50,19 +52,23 @@ class UserForm extends React.Component {
 
         <label>Height</label>
         <input
+        required
         type="text"
         value={this.state.height}>
         </input>
 
         <label>Current Weight</label>
         <input
+        required
         type="number"
         min="100"
         value={this.state.currentWeight}>
         </input>
 
         <label>What is your activity level?</label>
-        <select value={this.state.activity}>
+        <select
+        required
+        value={this.state.activity}>
         <option value="sedentary">Little or no exercise</option>
         <option value="lightly active">Light exercise 1-3 days/week</option>
         <option value="moderately active">Moderate exercise 3-5 days/week</option>
@@ -71,6 +77,7 @@ class UserForm extends React.Component {
 
         <label>Goal Weight</label>
         <input
+        required
         type="number"
         min="100"
         value={this.state.goalWeight}>
