@@ -30,6 +30,8 @@ class UserForm extends React.Component {
     return (
     <div className="form-container">
       <form onSubmit={this.handleSubmit}>
+        <div className="row">
+          <div className="col-half">
         <label>Gender</label>
         <input
         required
@@ -37,7 +39,9 @@ class UserForm extends React.Component {
         onChange={this.handleChange}
         name="gender">
         </input>
+        </div>
 
+        <div className="col-half">
         <label>Age</label>
         <input
         required
@@ -47,7 +51,11 @@ class UserForm extends React.Component {
         max="100"
         name="age">
         </input>
+        </div>
+        </div>
 
+        <div className="row">
+        <div className="col-half">
         <label>Height</label>
         <input
         required
@@ -55,7 +63,9 @@ class UserForm extends React.Component {
         onChange={this.handleChange}
         name="height">
         </input>
+        </div>
 
+        <div className="col-half">
         <label>Current Weight</label>
         <input
         required
@@ -64,7 +74,22 @@ class UserForm extends React.Component {
         min="100"
         name="currentWeight">
         </input>
+        </div>
+        </div>
 
+        <div className="row">
+        <div className="col-half">
+        <label>Goal Weight</label>
+        <input
+        required
+        type="number"
+        min="100"
+        onChange={this.handleChange}
+        name="goalWeight">
+        </input>
+        </div>
+
+        <div className="col-full">
         <label>What is your activity level?</label>
         <select
         required
@@ -75,15 +100,8 @@ class UserForm extends React.Component {
         <option value="moderately active">Moderate exercise 3-5 days/week</option>
         <option value="very active">Hard exercise 6/7 days/week</option>
         </select>
-
-        <label>Goal Weight</label>
-        <input
-        required
-        type="number"
-        min="100"
-        onChange={this.handleChange}
-        name="goalWeight">
-        </input>
+        </div>
+        </div>
         <button>Submit</button>
       </form>
     </div>

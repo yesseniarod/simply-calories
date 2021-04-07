@@ -1,10 +1,8 @@
 import React from 'react';
-import UserForm from './pages/form';
+import Home from './pages/home';
 
 export default class App extends React.Component {
   render() {
-    return <UserForm />;
+    return <Home />;
   }
 }
-
-// starter files imported and returned <Home />

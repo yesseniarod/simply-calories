@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+}
+
+.header {
+  background-color: #16c79a;
+  height: 4rem;
+  width: 100%;
+}
+
+.title {
+  padding-top: 1rem;
+  padding-left: 0.75rem;
+}
+
+h1 {
+  margin: 0;
+  color: white;
+  font-size: 1.25rem;
+}
+
+.form-container {
+  height: 10rem;
+  margin-top: 5rem;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.col-half {
+  width: 40%;
+}
+
+.col-full {
+  width: 95%;
+  margin-top: 2rem;
+}
+
+input {
+  width: 100%;
+}
+
+select {
+  width: 9rem;
+  margin-left: 2rem;
+}
