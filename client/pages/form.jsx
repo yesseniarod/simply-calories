@@ -9,7 +9,7 @@ class UserForm extends React.Component {
       height: '',
       currentWeight: '',
       goalWeight: '',
-      activity: 'lightly active'
+      activityLevel: 'lightly active'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -87,7 +87,7 @@ class UserForm extends React.Component {
           <select
           required
           onChange={this.handleChange}
-          name="activity">
+          name="activityLevel">
           <option value="sedentary">Little or no exercise</option>
           <option value="lightly active">Light exercise 1-3 days/week</option>
           <option value="moderately active">Moderate exercise 3-5 days/week</option>
