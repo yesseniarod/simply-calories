@@ -38,6 +38,7 @@ class UserForm extends React.Component {
         <input
         required
         type="text"
+        onChange={this.handleChange}
         value={this.state.gender}>
         </input>
 
@@ -45,6 +46,7 @@ class UserForm extends React.Component {
         <input
         required
         type="number"
+        onChange={this.handleChange}
         min="18"
         max="100"
         value={this.state.age}>
@@ -54,6 +56,7 @@ class UserForm extends React.Component {
         <input
         required
         type="text"
+        onChange={this.handleChange}
         value={this.state.height}>
         </input>
 
@@ -61,6 +64,7 @@ class UserForm extends React.Component {
         <input
         required
         type="number"
+        onChange={this.handleChange}
         min="100"
         value={this.state.currentWeight}>
         </input>
@@ -68,6 +72,7 @@ class UserForm extends React.Component {
         <label>What is your activity level?</label>
         <select
         required
+        onChange={this.handleChange}
         value={this.state.activity}>
         <option value="sedentary">Little or no exercise</option>
         <option value="lightly active">Light exercise 1-3 days/week</option>
@@ -80,6 +85,7 @@ class UserForm extends React.Component {
         required
         type="number"
         min="100"
+        onChange={this.handleChange}
         value={this.state.goalWeight}>
         </input>
         <button>Submit</button>
