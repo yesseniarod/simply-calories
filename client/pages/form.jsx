@@ -4,11 +4,11 @@ class UserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gender: 'Male/Female',
-      age: 'how old are you?',
-      height: 'height feet and inches',
-      currentWeight: 'weight in pounds',
-      goalWeight: 'weight in pounds',
+      gender: '',
+      age: '',
+      height: '',
+      currentWeight: '',
+      goalWeight: '',
       activity: 'lightly active'
     };
     this.handleChange = this.handleChange.bind(this);
@@ -64,8 +64,7 @@ class UserForm extends React.Component {
         type="text"
         onChange={this.handleChange}
         name="height"
-        placeholder="Feet and inches">
-
+        placeholder="Inches">
         </input>
         </div>
 
