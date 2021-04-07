@@ -37,7 +37,9 @@ class UserForm extends React.Component {
         required
         type="text"
         onChange={this.handleChange}
-        name="gender">
+        name="gender"
+        placeholder="Female/Male">
+
         </input>
         </div>
 
@@ -61,7 +63,9 @@ class UserForm extends React.Component {
         required
         type="text"
         onChange={this.handleChange}
-        name="height">
+        name="height"
+        placeholder="Feet and inches">
+
         </input>
         </div>
 
@@ -72,12 +76,26 @@ class UserForm extends React.Component {
         type="number"
         onChange={this.handleChange}
         min="100"
-        name="currentWeight">
+        name="currentWeight"
+        placeholder="Pounds">
         </input>
         </div>
         </div>
 
         <div className="row">
+         <div className="col-half">
+          <label>Activity Level</label>
+          <select
+          required
+          onChange={this.handleChange}
+          name="activity">
+          <option value="sedentary">Little or no exercise</option>
+          <option value="lightly active">Light exercise 1-3 days/week</option>
+          <option value="moderately active">Moderate exercise 3-5 days/week</option>
+          <option value="very active">Hard exercise 6/7 days/week</option>
+          </select>
+            </div>
+
         <div className="col-half">
         <label>Goal Weight</label>
         <input
@@ -85,24 +103,17 @@ class UserForm extends React.Component {
         type="number"
         min="100"
         onChange={this.handleChange}
-        name="goalWeight">
+        name="goalWeight"
+        placeholder="Pounds">
         </input>
         </div>
 
-        <div className="col-full">
-        <label>What is your activity level?</label>
-        <select
-        required
-        onChange={this.handleChange}
-        name="activity">
-        <option value="sedentary">Little or no exercise</option>
-        <option value="lightly active">Light exercise 1-3 days/week</option>
-        <option value="moderately active">Moderate exercise 3-5 days/week</option>
-        <option value="very active">Hard exercise 6/7 days/week</option>
-        </select>
+        </div>
+        <div className="button-container">
+        <div className="submit-button">
+            <i className="fas fa-check"></i>
         </div>
         </div>
-        <button>Submit</button>
       </form>
     </div>
     );
