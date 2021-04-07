@@ -1,6 +1,14 @@
 require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
+// const pg = require('pg');
+
+// const db = new pg.Pool({
+//   connectionString: 'postgres://dev:dev@localhost/userTable',
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
 
 const app = express();
 
