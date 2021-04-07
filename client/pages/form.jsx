@@ -16,13 +16,9 @@ class UserForm extends React.Component {
   }
 
   handleChange(event) {
+    const { name, value } = event.target;
     this.setState({
-      gender: event.target.value,
-      age: event.target.value,
-      height: event.target.value,
-      currentWeight: event.target.value,
-      goalWeight: event.target.value,
-      activity: event.target.value
+      [name]: value
     });
   }
 
@@ -33,13 +29,13 @@ class UserForm extends React.Component {
   render() {
     return (
     <div className="form-container">
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <label>Gender</label>
         <input
         required
         type="text"
         onChange={this.handleChange}
-        value={this.state.gender}>
+        name="gender">
         </input>
 
         <label>Age</label>
@@ -49,7 +45,7 @@ class UserForm extends React.Component {
         onChange={this.handleChange}
         min="18"
         max="100"
-        value={this.state.age}>
+        name="age">
         </input>
 
         <label>Height</label>
@@ -57,7 +53,7 @@ class UserForm extends React.Component {
         required
         type="text"
         onChange={this.handleChange}
-        value={this.state.height}>
+        name="height">
         </input>
 
         <label>Current Weight</label>
@@ -66,14 +62,14 @@ class UserForm extends React.Component {
         type="number"
         onChange={this.handleChange}
         min="100"
-        value={this.state.currentWeight}>
+        name="currentWeight">
         </input>
 
         <label>What is your activity level?</label>
         <select
         required
         onChange={this.handleChange}
-        value={this.state.activity}>
+        name="activity">
         <option value="sedentary">Little or no exercise</option>
         <option value="lightly active">Light exercise 1-3 days/week</option>
         <option value="moderately active">Moderate exercise 3-5 days/week</option>
@@ -86,7 +82,7 @@ class UserForm extends React.Component {
         type="number"
         min="100"
         onChange={this.handleChange}
-        value={this.state.goalWeight}>
+        name="goalWeight">
         </input>
         <button>Submit</button>
       </form>
