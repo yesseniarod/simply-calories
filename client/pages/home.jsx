@@ -1,5 +1,5 @@
 import React from 'react';
-import UserForm from './form';
+import UserForm from '../components/form';
 
 export default function Home(props) {
   return (
