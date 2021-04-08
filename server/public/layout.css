@@ -1,4 +1,9 @@
 @media screen and (min-width: 768px) {
+  .title {
+    padding-top: 1.5rem;
+    padding-left: 3rem;
+  }
+
   .row {
     width: 70%;
     display: flex;
@@ -8,13 +13,16 @@
     margin: 5rem auto;
   }
 
-  select {
-    width: 100%;
-  }
-
   .button-container {
     width: 80%;
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .title {
+    padding-top: 1.5rem;
+    padding-left: 5rem;
   }
 }

@@ -38,93 +38,93 @@ class UserForm extends React.Component {
 
   render() {
     return (
-    <div className="form-container">
-      <form onSubmit={this.handleSubmit}>
-        <div className="row">
-          <div className="col-half">
-        <label>Gender</label>
-        <input
-        required
-        type="text"
-        onChange={this.handleChange}
-        name="gender"
-        placeholder="Female/Male">
+      <div className="form-container">
+        <form onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="col-half">
+              <label>Gender</label>
+              <input
+                required
+                type="text"
+                onChange={this.handleChange}
+                name="gender"
+                placeholder="Female/Male">
 
-        </input>
-        </div>
-
-        <div className="col-half">
-        <label>Age</label>
-        <input
-        required
-        type="number"
-        onChange={this.handleChange}
-        min="18"
-        max="100"
-        name="age">
-        </input>
-        </div>
-        </div>
-
-        <div className="row">
-        <div className="col-half">
-        <label>Height</label>
-        <input
-        required
-        type="text"
-        onChange={this.handleChange}
-        name="height"
-        placeholder="Inches">
-        </input>
-        </div>
-
-        <div className="col-half">
-        <label>Current Weight</label>
-        <input
-        required
-        type="number"
-        onChange={this.handleChange}
-        min="100"
-        name="currentWeight"
-        placeholder="Pounds">
-        </input>
-        </div>
-        </div>
-
-        <div className="row">
-         <div className="col-half">
-          <label>Activity Level</label>
-          <select
-          required
-          onChange={this.handleChange}
-          name="activityLevel">
-          <option value="sedentary">Little or no exercise</option>
-          <option value="lightly active">Light exercise 1-3 days/week</option>
-          <option value="moderately active">Moderate exercise 3-5 days/week</option>
-          <option value="very active">Hard exercise 6/7 days/week</option>
-          </select>
+              </input>
             </div>
 
-        <div className="col-half">
-        <label>Goal Weight</label>
-        <input
-        required
-        type="number"
-        min="100"
-        onChange={this.handleChange}
-        name="goalWeight"
-        placeholder="Pounds">
-        </input>
-        </div>
+            <div className="col-half">
+              <label>Age</label>
+              <input
+                required
+                type="number"
+                onChange={this.handleChange}
+                min="18"
+                max="100"
+                name="age">
+              </input>
+            </div>
+          </div>
 
-        </div>
-        <div className="button-container">
-        <button className="submit-button">
-            <i className="fas fa-check"></i>
-        </button>
-        </div>
-      </form>
-    </div>
+          <div className="row">
+            <div className="col-half">
+              <label>Height</label>
+              <input
+                required
+                type="text"
+                onChange={this.handleChange}
+                name="height"
+                placeholder="Inches">
+              </input>
+            </div>
+
+            <div className="col-half">
+              <label>Current Weight</label>
+              <input
+                required
+                type="number"
+                onChange={this.handleChange}
+                min="100"
+                name="currentWeight"
+                placeholder="Pounds">
+              </input>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-half">
+              <label>Activity Level</label>
+              <select
+                required
+                onChange={this.handleChange}
+                name="activityLevel">
+                <option value="sedentary">Little or no exercise</option>
+                <option value="lightly active">Light exercise 1-3 days/week</option>
+                <option value="moderately active">Moderate exercise 3-5 days/week</option>
+                <option value="very active">Hard exercise 6/7 days/week</option>
+              </select>
+            </div>
+
+            <div className="col-half">
+              <label>Goal Weight</label>
+              <input
+                required
+                type="number"
+                min="100"
+                onChange={this.handleChange}
+                name="goalWeight"
+                placeholder="Pounds">
+              </input>
+            </div>
+
+          </div>
+          <div className="button-container">
+            <button className="submit-button">
+              <i className="fas fa-check"></i>
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 

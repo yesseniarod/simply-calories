@@ -1,15 +1,16 @@
-body {
-  margin: 0;
+* {
+  box-sizing: border-box;
+  margin: auto;
 }
 
 .header {
   background-color: #16c79a;
-  height: 4rem;
+  height: 5rem;
 }
 
 .title {
-  padding-top: 1rem;
-  padding-left: 0.75rem;
+  padding-top: 1.5rem;
+  padding-left: 1rem;
 }
 
 h1 {
@@ -33,10 +34,18 @@ h1 {
 
 input {
   width: 100%;
+  border: #466bca 1px solid;
+  border-radius: 0.25rem;
+  height: 1.5rem;
+  margin-top: 0.25rem;
 }
 
 select {
-  width: 9rem;
+  width: 100%;
+  border: #466bca 1px solid;
+  border-radius: 0.25rem;
+  height: 1.5rem;
+  margin-top: 0.25rem;
 }
 
 label {
