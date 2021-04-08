@@ -18,6 +18,20 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  table {
+    border: 1px solid black;
+    width: 50%;
+    height: 300px;
+    margin: auto;
+    margin-top: 3rem;
+  }
+
+  /* .table-title {
+    text-align: center;
+    padding-top: 6rem;
+    font-family: 'Overpass', sans-serif;
+  } */
 }
 
 @media screen and (min-width: 1024px) {
