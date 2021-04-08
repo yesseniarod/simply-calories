@@ -17,7 +17,7 @@ app.use(jsonMiddleware);
 
 app.use(staticMiddleware);
 
-app.post('api/users', (req, res, next) => {
+app.post('/api/users', (req, res) => {
   const { gender, age, height, currentWeight, goalWeight, activityLevel } = req.body;
   if (!gender || !age || !height || !currentWeight || !activityLevel || !goalWeight) {
     res.status(400).json({ error: 'all fields required' });
@@ -29,12 +29,18 @@ app.post('api/users', (req, res, next) => {
         returning *
   `;
   const params = [gender, age, height, currentWeight, goalWeight, activityLevel];
-  return db.query(sql, params);
+  db.query(sql, params)
+    .then(result => {
+      const [user] = result.rows;
+      res.status(201);
+      res.send(user);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500);
+      res.send({ error: 'Unexpected error occurred' });
+    });
 });
-// .then(result => {
-//   const [user] = result.rows;
-//   res.status(201).json(user);
-// })
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
