@@ -24,6 +24,16 @@ class UserForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/users', req)
+      .then(res => res.json())
+      .catch(error => console.error(error));
   }
 
   render() {
@@ -109,9 +119,9 @@ class UserForm extends React.Component {
 
         </div>
         <div className="button-container">
-        <div className="submit-button">
+        <button className="submit-button">
             <i className="fas fa-check"></i>
-        </div>
+        </button>
         </div>
       </form>
     </div>
