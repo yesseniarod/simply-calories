@@ -12,7 +12,7 @@ export default function Home(props) {
     </div>
     <div className="content">
     {/* <UserForm /> */}
-    <SummaryTable />
+    <SummaryTable age={27} gender={'female'} height={52} goalWeight={140} activityLevel={'lightly active'} />
     </div>
     <div className="footer">
 

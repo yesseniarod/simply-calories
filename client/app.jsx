@@ -1,5 +1,8 @@
 import React from 'react';
-import Home from './pages/home';
+// import Home from './pages/home';
+import PageContainer from './components/pagecontainer';
+import UserForm from './components/form';
+import SummaryTable from './components/table';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -7,20 +10,20 @@ export default class App extends React.Component {
     this.state = {
       user: null
     };
+    this.setUser = this.setUser.bind(this);
   }
 
   setUser(user) {
-    fetch('/api/users')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          users: data
-        });
-      })
-      .catch(error => console.error(error));
+    this.setState({
+      user: user
+    });
+
   }
 
   render() {
-    return <Home />;
+    return <PageContainer>
+      <UserForm setUser={this.setUser}/>,
+      <SummaryTable {...this.state.user}/>
+    </PageContainer>;
   }
 }

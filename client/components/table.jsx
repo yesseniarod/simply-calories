@@ -1,5 +1,5 @@
 import React from 'react';
-// import calorieCalculator from '../lib/calorieCalculator';
+import calorieCalculator from '../lib/calorieCalculator';
 
 class SummaryTable extends React.Component {
   constructor(props) {
@@ -10,13 +10,14 @@ class SummaryTable extends React.Component {
   }
 
   render() {
+    const calories = calorieCalculator(this.props.gender, this.props.age, this.props.height, this.props.goalWeight, this.props.activityLevel);
     return (
       <>
       <h2 className="table-title">Today</h2>
         <table>
           <thead>
             <tr>
-              <th colSpan="3">2000 calories remaining</th>
+              <th colSpan="3">{calories} calories remaining</th>
             </tr>
           </thead>
           <tbody>
