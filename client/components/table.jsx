@@ -7,6 +7,13 @@ class SummaryTable extends React.Component {
     this.state = {
       modalOpen: false
     };
+    this.openModal = this.openModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({
+      modalOpen: true
+    });
   }
 
   render() {
@@ -37,6 +44,11 @@ class SummaryTable extends React.Component {
             </tr>
           </tbody>
         </table>
+        <div className="modal-button-container">
+        <button className="modal-button" onClick={this.openModal}>
+          <i className="fas fa-plus"></i>
+        </button>
+        </div>
       </>
     );
   }

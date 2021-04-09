@@ -111,3 +111,17 @@ p {
   font-family: 'Overpass', sans-serif;
   margin-top: 1rem;
 }
+
+.modal-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+}
+
+.modal-button {
+  background-color: #16c79a;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
