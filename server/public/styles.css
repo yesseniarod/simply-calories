@@ -73,14 +73,15 @@ i {
 
 .table-title {
   text-align: center;
-  padding-top: 5rem;
+  padding-top: 4rem;
   font-family: 'Overpass', sans-serif;
+  font-size: 1.25rem;
 }
 
 table {
   border: 1px solid black;
-  width: 75%;
-  height: 275px;
+  width: 85%;
+  height: 260px;
   margin: auto;
   margin-top: 1rem;
 }
