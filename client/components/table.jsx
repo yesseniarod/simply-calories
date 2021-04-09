@@ -5,7 +5,7 @@ class SummaryTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasChanged: false
+      modalOpen: false
     };
   }
 
