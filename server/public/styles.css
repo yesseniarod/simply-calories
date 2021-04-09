@@ -70,3 +70,44 @@ label {
 i {
   color: white;
 }
+
+.table-title {
+  text-align: center;
+  padding-top: 4rem;
+  font-family: 'Overpass', sans-serif;
+  font-size: 1.25rem;
+}
+
+table {
+  border: 1px solid black;
+  width: 85%;
+  height: 260px;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+thead {
+  background-color: #16c79a;
+}
+
+th {
+  border-bottom: 1px solid black;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-family: 'Overpass', sans-serif;
+}
+
+.border-right {
+  border-right: 1px solid black;
+}
+
+td {
+  font-family: 'Overpass', sans-serif;
+  text-align: center;
+  width: 30%;
+}
+
+p {
+  font-family: 'Overpass', sans-serif;
+  margin-top: 1rem;
+}

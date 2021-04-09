@@ -1,5 +1,4 @@
 import React from 'react';
-import UserForm from '../components/form';
 
 export default function Home(props) {
   return (
@@ -10,7 +9,7 @@ export default function Home(props) {
     </div>
     </div>
     <div className="content">
-    <UserForm />
+
     </div>
     <div className="footer">
 
