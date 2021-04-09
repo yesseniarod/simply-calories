@@ -1,6 +1,14 @@
 import React from 'react';
+// import calorieCalculator from '../lib/calorieCalculator';
 
 class SummaryTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasChanged: false
+    };
+  }
+
   render() {
     return (
       <>

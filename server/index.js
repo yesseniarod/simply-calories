@@ -42,6 +42,35 @@ app.post('/api/users', (req, res) => {
     });
 });
 
+app.get('/api/users/:userId', (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  if (!Number.isInteger(userId) || userId < 1) {
+    res.status(400).json({ error: 'userId must be a positive integer' });
+    return;
+  }
+  const sql = `
+      select "gender",
+              "age",
+              "height",
+              "goalWeight",
+              "activityLevel"
+        from  "users"
+        where "userId" = $1
+  `;
+  const params = [userId];
+  db.query(sql, params)
+    .then(result => {
+      const [user] = result.rows;
+      res.json(user);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'Unexpected error occurred'
+      });
+    });
+});
+
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);
