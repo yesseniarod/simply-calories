@@ -26,6 +26,16 @@
     margin: auto;
     margin-top: 2rem;
   }
+
+  .modal {
+    background-color: white;
+    width: 45%;
+    display: flex;
+    justify-content: space-evenly;
+    height: 250px;
+    padding-top: 5rem;
+    margin-top: -4rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
