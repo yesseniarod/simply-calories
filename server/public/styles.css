@@ -159,3 +159,12 @@ p {
 .fas.fa-dumbbell {
   padding-left: 2.75rem;
 }
+
+.redirect-food-journal {
+  color: black;
+  text-decoration: none;
+}
+
+.redirect-food-journal:hover {
+  background-color: #16c79a;
+}

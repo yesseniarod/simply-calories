@@ -60,8 +60,8 @@ class SummaryTable extends React.Component {
           <div className="modal-container" onClick={this.closeModal}>
             <div className="modal">
               <div>
-              <i className="fas fa-utensils"></i>
-              <p>Food journal</p>
+                <a href="#food-journal"><i className="fas fa-utensils"></i></a>
+                <p><a href="#food-journal" className="redirect-food-journal">Food journal</a></p>
               </div>
               <div>
               <i className="fas fa-dumbbell"></i>
