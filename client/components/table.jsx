@@ -8,11 +8,18 @@ class SummaryTable extends React.Component {
       modalOpen: false
     };
     this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   openModal() {
     this.setState({
       modalOpen: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      modalOpen: false
     });
   }
 
@@ -50,7 +57,7 @@ class SummaryTable extends React.Component {
               <i className="fas fa-plus"></i>
             </button>
           </div>
-          <div className="modal-container">
+          <div className="modal-container" onClick={this.closeModal}>
             <div className="modal">
               <div>
               <i className="fas fa-utensils"></i>
