@@ -22,8 +22,9 @@ class SearchFood extends React.Component {
     fetch('https://trackapi.nutritionix.com/v2/search/instant?query=' + this.state.inputValue, {
       method: 'GET',
       headers: {
-        'x-app-id': 'dd9e56ab',
-        'x-app-key': '4da30138c0f96e06685a4cf9c173e61e'
+        'x-app-id': process.env.REACT_APP_API_ID,
+        'x-app-key': process.env.REACT_APP_API_KEY
+        // need to fix this
       }
     })
       .then(response => response.json())
@@ -32,21 +33,45 @@ class SearchFood extends React.Component {
   }
 
   render() {
-    return (
-      <form
-      className="search"
-      onSubmit={this.handleSearch}>
-        <div className="searchbar">
-          <input
-          type="search"
-          placeholder="food search"
-          onChange={this.handleInput}/>
-          <button className="search-button">
-            <i className="fas fa-search"></i>
-          </button>
-        </div>
-      </form>
-    );
+
+    if (!this.state.inputValue) {
+      return (
+        <form
+          className="search"
+          onSubmit={this.handleSearch}>
+          <div className="searchbar">
+            <input
+              type="search"
+              placeholder="food search"
+              onChange={this.handleInput} />
+            <button className="search-button">
+              <i className="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+      );
+    } else {
+      return (
+        <>
+          <form
+            className="search"
+            onSubmit={this.handleSearch}>
+            <div className="searchbar">
+              <input
+                type="search"
+                placeholder="food search"
+                onChange={this.handleInput} />
+              <button className="search-button">
+                <i className="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
+          {/* <div>{foodItem}</div> */}
+
+        </>
+      );
+    }
+
   }
 }
 

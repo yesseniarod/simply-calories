@@ -4,15 +4,14 @@ import UserForm from './components/form';
 import SummaryTable from './components/table';
 import parseRoute from './lib/parse-route';
 import FoodJournal from './pages/food-journal';
-// import getFoodItem from './lib/foodSearch';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       user: null,
-      route: parseRoute(window.location.hash),
-      input: null
+      route: parseRoute(window.location.hash)
+
     };
     this.setUser = this.setUser.bind(this);
     this.renderPage = this.renderPage.bind(this);
@@ -47,8 +46,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    // getFoodItem();
-    // testing results and logging to console
 
     return <PageContainer>
       {this.renderPage()}
