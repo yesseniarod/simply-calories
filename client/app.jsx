@@ -3,6 +3,7 @@ import PageContainer from './components/pagecontainer';
 import UserForm from './components/form';
 import SummaryTable from './components/table';
 import parseRoute from './lib/parse-route';
+import FoodJournal from './pages/food-journal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -38,9 +39,13 @@ export default class App extends React.Component {
     if (route.path === 'summary') {
       return <SummaryTable {...this.state.user}/>;
     }
+    if (route.path === 'food-journal') {
+      return <FoodJournal />;
+    }
   }
 
   render() {
+
     return <PageContainer>
       {this.renderPage()}
     </PageContainer>;

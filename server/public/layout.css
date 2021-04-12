@@ -26,11 +26,43 @@
     margin: auto;
     margin-top: 2rem;
   }
+
+  .modal {
+    background-color: white;
+    width: 45%;
+    display: flex;
+    justify-content: space-evenly;
+    height: 250px;
+    padding-top: 5rem;
+    margin-top: -4rem;
+  }
+
+  .food-journal-title {
+    font-size: 1.2rem;
+    padding-top: 3rem;
+    margin-bottom: -2rem;
+    margin-left: 5.75rem;
+  }
+
+  input[type="search"] {
+    width: 40%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .title {
     padding-top: 1.5rem;
     padding-left: 5rem;
+  }
+
+  .food-journal-title {
+    font-size: 1.2rem;
+    padding-top: 3rem;
+    margin-bottom: -2rem;
+    margin-left: 7.75rem;
+  }
+
+  input[type="search"] {
+    width: 30%;
   }
 }
