@@ -4,6 +4,7 @@ import UserForm from './components/form';
 import SummaryTable from './components/table';
 import parseRoute from './lib/parse-route';
 import FoodJournal from './pages/food-journal';
+import getFoodItem from './lib/foodSearch';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -45,6 +46,9 @@ export default class App extends React.Component {
   }
 
   render() {
+    getFoodItem();
+    // testing results and logging to console
+
     return <PageContainer>
       {this.renderPage()}
     </PageContainer>;
