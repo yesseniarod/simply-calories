@@ -24,11 +24,10 @@ class SearchFood extends React.Component {
       headers: {
         'x-app-id': process.env.REACT_APP_API_ID,
         'x-app-key': process.env.REACT_APP_API_KEY
-        // need to fix this
       }
     })
       .then(response => response.json())
-      // .then(input => console.log(input.branded))
+      .then(input => this.state.inputValue)
       .catch(error => console.error(error));
   }
 

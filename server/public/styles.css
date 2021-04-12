@@ -172,7 +172,6 @@ p {
 .searchbar {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-top: 5rem;
 }
 
@@ -195,7 +194,7 @@ input[type="search"] {
   font-size: 1.2rem;
 }
 
-h2 {
+.food-journal-title {
   font-size: 1.1rem;
   font-family: 'Overpass', sans-serif;
   padding-top: 3rem;

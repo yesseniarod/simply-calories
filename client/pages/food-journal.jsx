@@ -4,8 +4,8 @@ import SearchFood from '../components/searchBar';
 export default function FoodJournal(props) {
   return (
     <>
-    <h2>Food journal</h2>
-    <SearchFood />
+    <h2 className="food-journal-title">Food journal</h2>
+      <SearchFood />
 
     </>
   );

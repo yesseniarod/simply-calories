@@ -10,7 +10,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       user: null,
-      route: parseRoute(window.location.hash)
+      route: parseRoute(window.location.hash),
+      input: null
 
     };
     this.setUser = this.setUser.bind(this);
