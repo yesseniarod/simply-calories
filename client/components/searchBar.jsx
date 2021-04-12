@@ -7,6 +7,7 @@ class SearchFood extends React.Component {
       inputValue: ''
     };
     this.handleInput = this.handleInput.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleInput(event) {
@@ -16,9 +17,25 @@ class SearchFood extends React.Component {
     });
   }
 
+  handleSearch(event) {
+    event.preventDefault();
+    fetch('https://trackapi.nutritionix.com/v2/search/instant?query=' + this.state.inputValue, {
+      method: 'GET',
+      headers: {
+        'x-app-id': 'dd9e56ab',
+        'x-app-key': '4da30138c0f96e06685a4cf9c173e61e'
+      }
+    })
+      .then(response => response.json())
+      // .then(input => console.log(input.branded))
+      .catch(error => console.error(error));
+  }
+
   render() {
     return (
-      <form className="search">
+      <form
+      className="search"
+      onSubmit={this.handleSearch}>
         <div className="searchbar">
           <input
           type="search"
