@@ -187,7 +187,7 @@ input[type="search"] {
 .search-button {
   border: none;
   background-color: transparent;
-  margin-left: -2rem;
+  margin-left: -3rem;
 }
 
 .fas.fa-search {
