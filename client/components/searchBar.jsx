@@ -33,43 +33,22 @@ class SearchFood extends React.Component {
 
   render() {
 
-    if (!this.state.inputValue) {
-      return (
+    return (
         <form
           className="search"
           onSubmit={this.handleSearch}>
           <div className="searchbar">
             <input
+              name="inputValue"
               type="search"
               placeholder="food search"
               onChange={this.handleInput} />
             <button className="search-button">
-              <i className="fas fa-search"></i>
+              <i className="fas fa-search food-search-icon"></i>
             </button>
           </div>
         </form>
-      );
-    } else {
-      return (
-        <>
-          <form
-            className="search"
-            onSubmit={this.handleSearch}>
-            <div className="searchbar">
-              <input
-                type="search"
-                placeholder="food search"
-                onChange={this.handleInput} />
-              <button className="search-button">
-                <i className="fas fa-search"></i>
-              </button>
-            </div>
-          </form>
-
-        </>
-      );
-    }
-
+    );
   }
 }
 

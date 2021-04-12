@@ -146,17 +146,17 @@ p {
   padding-top: 4rem;
 }
 
-.fas.fa-utensils,
-.fas.fa-dumbbell {
+.utensils-icon,
+.dumbbell-icon {
   font-size: 1.5rem;
   color: black;
 }
 
-.fas.fa-utensils {
+.utensils-icon {
   padding-left: 2.2rem;
 }
 
-.fas.fa-dumbbell {
+.dumbbell-icon {
   padding-left: 2.75rem;
 }
 
@@ -181,6 +181,8 @@ input[type="search"] {
   margin-top: 0;
   height: 2rem;
   border: black 1px solid;
+  margin-left: -1rem;
+  padding-left: 0.25rem;
 }
 
 .search-button {
@@ -189,7 +191,7 @@ input[type="search"] {
   margin-left: -3rem;
 }
 
-.fas.fa-search {
+.food-search-icon {
   color: black;
   font-size: 1.2rem;
 }
