@@ -95,8 +95,8 @@ class SearchFood extends React.Component {
                   <p className="serving">Serving: {item.serving_qty.toFixed(1)} {item.serving_unit}</p>
                 </div>
                 <div className="add">
-                <button className="add-item">
-                    <i className="fas fa-plus add-icon" onClick={this.selectItem} data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty}></i>
+                  <button className="add-item" onClick={this.selectItem} data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty}>
+                    <i className="fas fa-plus add-icon" data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty}></i>
                 </button>
                 </div>
               </li>;
