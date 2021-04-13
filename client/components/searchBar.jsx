@@ -4,7 +4,8 @@ class SearchFood extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: ''
+      inputValue: '',
+      result: []
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -27,13 +28,18 @@ class SearchFood extends React.Component {
       }
     })
       .then(response => response.json())
-      .then(input => this.state.inputValue)
+      .then(input => {
+        this.setState({
+          result: input.branded
+        });
+      })
       .catch(error => console.error(error));
   }
 
   render() {
-
+    // const { result } = this.state;
     return (
+      <>
         <form
           className="search"
           onSubmit={this.handleSearch}>
@@ -48,6 +54,23 @@ class SearchFood extends React.Component {
             </button>
           </div>
         </form>
+        <div>
+          <ul className="search-results">
+            <div className="result-list">
+            {this.state.result.map(item => {
+              return <li key={item.nix_item_id}>
+              {item.food_name}
+                <p>Calories: {item.nf_calories.toFixed()}</p>
+                <p>Serving: {item.serving_qty.toFixed(1)}</p>
+                <div className="result-image">
+                  <img src={item.photo.thumb} />
+                </div>
+              </li>;
+            })}
+            </div>
+          </ul>
+        </div>
+      </>
     );
   }
 }

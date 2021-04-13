@@ -47,6 +47,21 @@
   input[type="search"] {
     width: 40%;
   }
+
+  li {
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid black;
+    width: 40%;
+    font-family: 'Overpass', sans-serif;
+    font-size: 0.9rem;
+  }
+
+  img {
+    object-fit: contain;
+    width: 15%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
