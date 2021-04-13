@@ -22,7 +22,7 @@ create table "public"."food-journal" (
   "foodId"         serial,
   "name"           text              not null,
   "calories"       integer           not null,
-  "serving"        integer           not null,
+  "serving"        float           not null,
   "createdAt"      timestamptz(6) not null default now(),
   primary key ("foodId")
 );
