@@ -169,6 +169,10 @@ p {
   background-color: #16c79a;
 }
 
+.search {
+  margin-bottom: 3rem;
+}
+
 .searchbar {
   display: flex;
   justify-content: center;
@@ -208,16 +212,15 @@ ul {
   list-style: none;
 }
 
-.result-list {
-  /* text-align: center; */
+/* .result-list {
+  text-align: center;
   margin-top: 5rem;
-}
+} */
 
 li {
   margin-bottom: 2rem;
-  margin-left: 1rem;
   border-bottom: 1px solid black;
-  width: 80%;
+  width: 90%;
   font-family: 'Overpass', sans-serif;
   font-size: 0.9rem;
 }
@@ -231,4 +234,10 @@ li {
 img {
   object-fit: contain;
   width: 20%;
+}
+
+.description {
+  margin-left: 5rem;
+  margin-bottom: 1.5rem;
+  margin-top: -4.75rem;
 }

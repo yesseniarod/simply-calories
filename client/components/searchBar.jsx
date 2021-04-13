@@ -6,7 +6,8 @@ class SearchFood extends React.Component {
     this.state = {
       inputValue: '',
       result: [],
-      items: []
+      items: [],
+      calories: []
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -40,8 +41,10 @@ class SearchFood extends React.Component {
 
   selectItem(event) {
     const selected = event.target.getAttribute('data-id');
+    const calories = event.target.getAttribute('data-calories');
     this.setState({
-      items: this.state.items.concat(selected)
+      items: this.state.items.concat(selected),
+      calories: this.state.calories.concat(calories)
     });
   }
 
@@ -67,12 +70,14 @@ class SearchFood extends React.Component {
           <ul className="search-results">
             <div className="result-list">
             {this.state.result.map(item => {
-              return <li key={item.nix_item_id} onClick={this.selectItem} data-id={item.food_name + ` ${item.nf_calories} calories`}>
-              {item.food_name}
-                <p>Calories: {item.nf_calories.toFixed()}</p>
-                <p>Serving: {item.serving_qty.toFixed(1)}</p>
+              return <li key={item.nix_item_id} onClick={this.selectItem} data-id={item.food_name + ` ${item.nf_calories} calories`} data-calories={item.nf_calories}>
                 <div className="result-image">
                   <img src={item.photo.thumb} />
+                </div>
+                <div className="description">
+                  <p>{item.food_name}</p>
+                  <p className="calories">Calories: {item.nf_calories.toFixed()}</p>
+                  <p className="serving">Serving: {item.serving_qty.toFixed(1)}</p>
                 </div>
               </li>;
             })}
