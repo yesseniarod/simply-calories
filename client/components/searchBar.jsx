@@ -5,10 +5,12 @@ class SearchFood extends React.Component {
     super(props);
     this.state = {
       inputValue: '',
-      result: []
+      result: [],
+      items: []
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.selectItem = this.selectItem.bind(this);
   }
 
   handleInput(event) {
@@ -36,6 +38,13 @@ class SearchFood extends React.Component {
       .catch(error => console.error(error));
   }
 
+  selectItem(event) {
+    const selected = event.target.getAttribute('data-id');
+    this.setState({
+      items: this.state.items.concat(selected)
+    });
+  }
+
   render() {
     // const { result } = this.state;
     return (
@@ -58,7 +67,7 @@ class SearchFood extends React.Component {
           <ul className="search-results">
             <div className="result-list">
             {this.state.result.map(item => {
-              return <li key={item.nix_item_id}>
+              return <li key={item.nix_item_id} onClick={this.selectItem} data-id={item.food_name + ` ${item.nf_calories} calories`}>
               {item.food_name}
                 <p>Calories: {item.nf_calories.toFixed()}</p>
                 <p>Serving: {item.serving_qty.toFixed(1)}</p>
