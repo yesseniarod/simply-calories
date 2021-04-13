@@ -212,11 +212,6 @@ ul {
   list-style: none;
 }
 
-/* .result-list {
-  text-align: center;
-  margin-top: 5rem;
-} */
-
 li {
   margin-bottom: 2rem;
   border-bottom: 1px solid black;
@@ -239,10 +234,6 @@ img {
 .description {
   margin-left: 5rem;
   margin-top: -4.75rem;
-
-  /* width: 40%; */
-
-  /* margin-bottom: 1.5rem; */
 }
 
 .add {
