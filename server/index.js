@@ -71,6 +71,33 @@ app.get('/api/users/:userId', (req, res) => {
     });
 });
 
+// app.post('/api/food-journal', (req, res) => {
+//   const { name, calories, serving } = req.body;
+//   if (name === null || calories === null || serving === null) {
+//     res.status(400).json({
+//       error: 'name, calories, and serving are required'
+//     });
+//     return;
+//   }
+//   const sql = `
+//       insert into "food-journal" ("name", "calories", "serving")
+//       values ($1, $2, $3)
+//       returning *
+//     `;
+//   const params = [name, calories, serving];
+//   db.query(sql, params)
+//     .then(result => {
+//       const [item] = result.rows;
+//       res.status(201).json(item);
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({
+//         error: 'an unexpected error occurred'
+//       });
+//     });
+// });
+
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);

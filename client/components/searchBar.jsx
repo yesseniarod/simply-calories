@@ -42,6 +42,23 @@ class SearchFood extends React.Component {
   selectItem(event) {
     const selected = event.target.getAttribute('data-id');
     const calories = event.target.getAttribute('data-calories');
+    //   const req = {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: selected
+    //   };
+    //   fetch('/api/food-journal', req)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       this.setState({
+    //         items: this.state.items.concat(data)
+    //       });
+    //     })
+    //     .catch(error => console.error(error));
+    // }
+
     this.setState({
       items: this.state.items.concat(selected),
       calories: this.state.calories.concat(calories)
@@ -70,7 +87,7 @@ class SearchFood extends React.Component {
           <ul className="search-results">
             <div className="result-list">
             {this.state.result.map(item => {
-              return <li key={item.nix_item_id} onClick={this.selectItem} data-id={item.food_name + ` ${item.nf_calories} calories`} data-calories={item.nf_calories}>
+              return <li key={item.nix_item_id}>
                 <div className="result-image">
                   <img src={item.photo.thumb} />
                 </div>
@@ -78,6 +95,11 @@ class SearchFood extends React.Component {
                   <p>{item.food_name}</p>
                   <p className="calories">Calories: {item.nf_calories.toFixed()}</p>
                   <p className="serving">Serving: {item.serving_qty.toFixed(1)}</p>
+                </div>
+                <div className="add">
+                <button className="add-item">
+                    <i className="fas fa-plus add-icon" onClick={this.selectItem} data-id={item.food_name + ` ${item.nf_calories} calories` + ` ${item.serving_qty} serving`} data-calories={item.nf_calories}></i>
+                </button>
                 </div>
               </li>;
             })}

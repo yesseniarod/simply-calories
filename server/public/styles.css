@@ -238,6 +238,26 @@ img {
 
 .description {
   margin-left: 5rem;
-  margin-bottom: 1.5rem;
   margin-top: -4.75rem;
+
+  /* width: 40%; */
+
+  /* margin-bottom: 1.5rem; */
+}
+
+.add {
+  margin-left: auto;
+  margin-bottom: -2rem;
+  padding-left: 2rem;
+  width: 20%;
+}
+
+.add-item {
+  background-color: transparent;
+  border: none;
+  padding-bottom: 3rem;
+}
+
+.add-icon {
+  color: black;
 }
