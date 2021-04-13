@@ -6,8 +6,7 @@ class SearchFood extends React.Component {
     this.state = {
       inputValue: '',
       result: [],
-      items: [],
-      calories: []
+      items: []
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -42,31 +41,30 @@ class SearchFood extends React.Component {
   selectItem(event) {
     const selected = event.target.getAttribute('data-id');
     const calories = event.target.getAttribute('data-calories');
-    //   const req = {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: selected
-    //   };
-    //   fetch('/api/food-journal', req)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       this.setState({
-    //         items: this.state.items.concat(data)
-    //       });
-    //     })
-    //     .catch(error => console.error(error));
-    // }
-
-    this.setState({
-      items: this.state.items.concat(selected),
-      calories: this.state.calories.concat(calories)
-    });
+    const serving = event.target.getAttribute('data-serving');
+    const newItem = {
+      name: selected,
+      calories: calories,
+      serving: serving
+    };
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newItem)
+    };
+    fetch('/api/food-journal', req)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          items: this.state.items.concat(data)
+        });
+      })
+      .catch(error => console.error(error));
   }
 
   render() {
-    // const { result } = this.state;
     return (
       <>
         <form
@@ -98,7 +96,7 @@ class SearchFood extends React.Component {
                 </div>
                 <div className="add">
                 <button className="add-item">
-                    <i className="fas fa-plus add-icon" onClick={this.selectItem} data-id={item.food_name + ` ${item.nf_calories} calories` + ` ${item.serving_qty} serving`} data-calories={item.nf_calories}></i>
+                    <i className="fas fa-plus add-icon" onClick={this.selectItem} data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty}></i>
                 </button>
                 </div>
               </li>;
