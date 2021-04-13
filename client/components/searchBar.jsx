@@ -92,7 +92,7 @@ class SearchFood extends React.Component {
                 <div className="description">
                   <p>{item.food_name}</p>
                   <p className="calories">Calories: {item.nf_calories.toFixed()}</p>
-                  <p className="serving">Serving: {item.serving_qty.toFixed(1)}</p>
+                  <p className="serving">Serving: {item.serving_qty.toFixed(1)} {item.serving_unit}</p>
                 </div>
                 <div className="add">
                 <button className="add-item">
