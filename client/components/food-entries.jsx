@@ -26,9 +26,27 @@ class FoodEntries extends React.Component {
 
   render() {
     return (
-      <>
-        <h2 className="food-journal-title">Food journal</h2>
-      </>
+       <>
+         <h2 className="food-journal-title">Food journal</h2>
+         <div className="food-entries-container">
+           <ul className="food-entries-list">
+             <div className="entries">
+               {
+                 this.state.items.map(item => {
+                   return <li key={item.foodId}>
+                     <div className="entry-details">
+                       <p>{item.name}</p>
+                       <p>Calories: {item.calories}</p>
+                       <p>Serving: {item.serving}</p>
+                     </div>
+                   </li>;
+                 })
+               }
+             </div>
+
+           </ul>
+         </div>
+       </>
     );
   }
 }
