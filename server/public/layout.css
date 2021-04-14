@@ -87,6 +87,10 @@
   .add-icon {
     font-size: 1.1rem;
   }
+
+  h3 {
+    margin-right: 6rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -118,6 +122,10 @@
   .add {
     margin-right: -2rem;
   }
+
+  h3 {
+    margin-right: 8rem;
+  }
 }
 
 @media screen and (min-width: 1920px) {
@@ -127,5 +135,9 @@
     padding-left: 2rem;
     margin-right: -5.5rem;
     width: 20%;
+  }
+
+  h3 {
+    margin-right: 12rem;
   }
 }

@@ -7,6 +7,7 @@ class FoodEntries extends React.Component {
     this.state = {
       items: []
     };
+    this.sumCalories = this.sumCalories.bind(this);
   }
 
   componentDidMount() {
@@ -24,10 +25,22 @@ class FoodEntries extends React.Component {
       .catch(error => console.error(error));
   }
 
+  sumCalories(items) {
+    let total = 0;
+    for (let i = 0; i < this.state.items.length; i++) {
+      total += this.state.items[i].calories;
+    }
+    return total;
+  }
+
   render() {
+    const consumed = this.sumCalories(this.state.items);
     return (
        <>
+       <div className="entry-heading">
          <h2 className="food-journal-title">Food journal</h2>
+          <h3>{consumed} calories</h3>
+        </div>
          <div className="food-entries-container">
            <ul className="food-entries-list">
              <div className="entries">

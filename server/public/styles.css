@@ -256,3 +256,15 @@ img {
 .food-entries-list {
   margin-top: 5rem;
 }
+
+.entry-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+h3 {
+  margin-right: 2rem;
+  font-size: 1rem;
+  font-family: 'Overpass', sans-serif;
+}
