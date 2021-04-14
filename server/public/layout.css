@@ -69,7 +69,6 @@
   .description {
     margin-left: -18rem;
     margin-bottom: -1.5rem;
-    width: 40%;
   }
 
   .search {
@@ -164,6 +163,10 @@
     color: white;
     font-family: 'Overpass', sans-serif;
     text-decoration: none;
+  }
+
+  .nav:hover {
+    color: black;
   }
 
   .bottom-nav {
