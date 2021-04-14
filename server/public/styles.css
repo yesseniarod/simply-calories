@@ -272,3 +272,32 @@ h3 {
 .view {
   color: #466bca;
 }
+
+.top-navigation {
+  visibility: hidden;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.bottom-nav {
+  background-color: #16c79a;
+  display: flex;
+  justify-content: space-around;
+  height: 4rem;
+  align-items: center;
+}
+
+.chart-icon,
+.calendar-icon,
+.profile-icon {
+  font-size: 2rem;
+  color: black;
+}
+
+.search-result-container {
+  margin-bottom: 6rem;
+}

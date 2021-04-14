@@ -140,4 +140,33 @@
   h3 {
     margin-right: 12rem;
   }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .top-navigation {
+    display: flex;
+    margin-right: 2rem;
+    visibility: visible;
+  }
+
+  .nav-links {
+    margin-right: 3rem;
+    padding-right: 7rem;
+    margin-left: -8rem;
+    font-size: 1.1rem;
+  }
+
+  .nav {
+    color: white;
+    font-family: 'Overpass', sans-serif;
+    text-decoration: none;
+  }
+
+  .bottom-nav {
+    visibility: hidden;
+  }
 }

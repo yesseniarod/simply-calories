@@ -83,7 +83,7 @@ class SearchFood extends React.Component {
             </button>
           </div>
         </form>
-        <div>
+        <div className="search-result-container">
           <ul className="search-results">
             <div className="result-list">
             {this.state.result.map(item => {
