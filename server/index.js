@@ -100,9 +100,12 @@ app.post('/api/food-journal', (req, res) => {
 
 app.get('/api/food-journal', (req, res) => {
   const sql = `
-    select *
+    select "foodId",
+            "name",
+            "calories",
+            "serving"
     from "food-journal"
-    order by "foodId
+    order by "foodId"
   `;
   db.query(sql)
     .then(result => {
