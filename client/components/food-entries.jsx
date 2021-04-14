@@ -6,7 +6,6 @@ class FoodEntries extends React.Component {
     this.state = {
       items: []
     };
-    this.sumCalories = this.sumCalories.bind(this);
   }
 
   componentDidMount() {
