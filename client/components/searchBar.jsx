@@ -42,10 +42,12 @@ class SearchFood extends React.Component {
     const selected = event.target.getAttribute('data-id');
     const calories = event.target.getAttribute('data-calories');
     const serving = event.target.getAttribute('data-serving');
+    const image = event.target.getAttribute('data-image');
     const newItem = {
       name: selected,
       calories: calories,
-      serving: serving
+      serving: serving,
+      image: image
     };
     const req = {
       method: 'POST',
@@ -95,8 +97,8 @@ class SearchFood extends React.Component {
                   <p className="serving">Serving: {item.serving_qty.toFixed(1)} {item.serving_unit}</p>
                 </div>
                 <div className="add">
-                  <button className="add-item" onClick={this.selectItem} data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty}>
-                    <i className="fas fa-plus add-icon" data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty}></i>
+                  <button className="add-item" onClick={this.selectItem} data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty} data-image={item.photo.thumb}>
+                    <i className="fas fa-plus add-icon" data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty} data-image={item.photo.thumb}></i>
                 </button>
                 </div>
               </li>;

@@ -72,19 +72,19 @@ app.get('/api/users/:userId', (req, res) => {
 });
 
 app.post('/api/food-journal', (req, res) => {
-  const { name, calories, serving } = req.body;
-  if (name === null || calories === null || serving === null) {
+  const { name, calories, serving, image } = req.body;
+  if (name === null || calories === null || serving === null || image === null) {
     res.status(400).json({
-      error: 'name, calories, and serving are required'
+      error: 'name, calories, serving, and image are required'
     });
     return;
   }
   const sql = `
-       insert into "food-journal" ("name", "calories", "serving")
-       values ($1, $2, $3)
+       insert into "food-journal" ("name", "calories", "serving", "image")
+       values ($1, $2, $3, $4)
        returning *
      `;
-  const params = [name, calories, serving];
+  const params = [name, calories, serving, image];
   db.query(sql, params)
     .then(result => {
       const [item] = result.rows;
@@ -103,7 +103,8 @@ app.get('/api/food-journal', (req, res) => {
     select "foodId",
             "name",
             "calories",
-            "serving"
+            "serving",
+            "image"
     from "food-journal"
     order by "foodId"
   `;

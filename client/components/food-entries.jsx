@@ -34,7 +34,10 @@ class FoodEntries extends React.Component {
                {
                  this.state.items.map(item => {
                    return <li key={item.foodId}>
-                     <div className="entry-details">
+                     <div className="result-image">
+                       <img src={item.image} />
+                     </div>
+                     <div className="description">
                        <p>{item.name}</p>
                        <p>Calories: {item.calories}</p>
                        <p>Serving: {item.serving}</p>
