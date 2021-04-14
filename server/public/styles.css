@@ -268,3 +268,7 @@ h3 {
   font-size: 1rem;
   font-family: 'Overpass', sans-serif;
 }
+
+.view {
+  color: #466bca;
+}
