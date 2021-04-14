@@ -169,6 +169,10 @@ p {
   background-color: #16c79a;
 }
 
+.search {
+  margin-bottom: 3rem;
+}
+
 .searchbar {
   display: flex;
   justify-content: center;
@@ -202,4 +206,49 @@ input[type="search"] {
   padding-top: 3rem;
   margin-bottom: -2rem;
   margin-left: 1.5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid black;
+  width: 90%;
+  font-family: 'Overpass', sans-serif;
+  font-size: 0.9rem;
+}
+
+.result-image {
+  display: flex;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+img {
+  object-fit: contain;
+  width: 20%;
+}
+
+.description {
+  margin-left: 5rem;
+  margin-top: -4.75rem;
+}
+
+.add {
+  margin-left: auto;
+  margin-bottom: -2rem;
+  padding-left: 2rem;
+  width: 20%;
+}
+
+.add-item {
+  background-color: transparent;
+  border: none;
+  padding-bottom: 3rem;
+}
+
+.add-icon {
+  color: black;
 }

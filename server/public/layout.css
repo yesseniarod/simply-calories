@@ -47,6 +47,46 @@
   input[type="search"] {
     width: 40%;
   }
+
+  li {
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid black;
+    width: 60%;
+    font-family: 'Overpass', sans-serif;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    width: 15%;
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+  }
+
+  .description {
+    margin-left: -18rem;
+    margin-bottom: -1.5rem;
+    width: 40%;
+  }
+
+  .search {
+    margin-bottom: 7rem;
+  }
+
+  .result-image {
+    margin-bottom: 1.5rem;
+  }
+
+  .add {
+    margin-right: -1.5rem;
+  }
+
+  .add-icon {
+    font-size: 1.1rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -64,5 +104,28 @@
 
   input[type="search"] {
     width: 30%;
+  }
+
+  li {
+    border-bottom: 1px solid black;
+    width: 50%;
+    font-family: 'Overpass', sans-serif;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .add {
+    margin-right: -2rem;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .add {
+    margin-left: auto;
+    margin-bottom: -2rem;
+    padding-left: 2rem;
+    margin-right: -5.5rem;
+    width: 20%;
   }
 }
