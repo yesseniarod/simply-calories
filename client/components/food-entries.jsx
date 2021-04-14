@@ -1,5 +1,4 @@
 import React from 'react';
-// import SearchFood from './searchBar';
 
 class FoodEntries extends React.Component {
   constructor(props) {
