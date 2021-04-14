@@ -53,7 +53,7 @@ class FoodEntries extends React.Component {
                      <div className="description">
                        <p>{item.name}</p>
                        <p>Calories: {item.calories}</p>
-                       <p>Serving: {item.serving}</p>
+                       <p>Serving: {item.serving} {item.unit}</p>
                      </div>
                    </li>;
                  })
