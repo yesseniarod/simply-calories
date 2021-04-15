@@ -81,7 +81,7 @@ class SearchFood extends React.Component {
               placeholder="food search"
               onChange={this.handleInput} />
             <button className="search-button">
-              <i className="fas fa-search food-search-icon"></i>
+              <i className="fas fa-search search-icon"></i>
             </button>
           </div>
         </form>
