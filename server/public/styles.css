@@ -303,3 +303,10 @@ h3 {
 .search-result-container {
   margin-bottom: 6rem;
 }
+
+.workout-title {
+  font-family: 'Overpass', sans-serif;
+  font-size: 1.1rem;
+  padding-top: 3rem;
+  margin-left: 1.1rem;
+}

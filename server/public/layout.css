@@ -90,6 +90,10 @@
   h3 {
     margin-right: 6rem;
   }
+
+  .workout-title {
+    margin-left: 3.3rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -124,6 +128,10 @@
 
   h3 {
     margin-right: 8rem;
+  }
+
+  .workout-title {
+    margin-left: 5.1rem;
   }
 }
 
