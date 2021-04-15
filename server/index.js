@@ -72,19 +72,19 @@ app.get('/api/users/:userId', (req, res) => {
 });
 
 app.post('/api/food-journal', (req, res) => {
-  const { name, calories, serving } = req.body;
-  if (name === null || calories === null || serving === null) {
+  const { name, calories, serving, image, unit } = req.body;
+  if (name === null || calories === null || serving === null || image === null || unit === null) {
     res.status(400).json({
-      error: 'name, calories, and serving are required'
+      error: 'name, calories, serving, image, and unit are required'
     });
     return;
   }
   const sql = `
-       insert into "food-journal" ("name", "calories", "serving")
-       values ($1, $2, $3)
+       insert into "food-journal" ("name", "calories", "serving", "image", "unit")
+       values ($1, $2, $3, $4, $5)
        returning *
      `;
-  const params = [name, calories, serving];
+  const params = [name, calories, serving, image, unit];
   db.query(sql, params)
     .then(result => {
       const [item] = result.rows;
@@ -94,6 +94,29 @@ app.post('/api/food-journal', (req, res) => {
       console.error(err);
       res.status(500).json({
         error: 'an unexpected error occurred'
+      });
+    });
+});
+
+app.get('/api/food-journal', (req, res) => {
+  const sql = `
+    select "foodId",
+            "name",
+            "calories",
+            "serving",
+            "image",
+            "unit"
+    from "food-journal"
+    order by "foodId"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
       });
     });
 });

@@ -69,7 +69,6 @@
   .description {
     margin-left: -18rem;
     margin-bottom: -1.5rem;
-    width: 40%;
   }
 
   .search {
@@ -86,6 +85,10 @@
 
   .add-icon {
     font-size: 1.1rem;
+  }
+
+  h3 {
+    margin-right: 6rem;
   }
 }
 
@@ -118,6 +121,10 @@
   .add {
     margin-right: -2rem;
   }
+
+  h3 {
+    margin-right: 8rem;
+  }
 }
 
 @media screen and (min-width: 1920px) {
@@ -127,5 +134,42 @@
     padding-left: 2rem;
     margin-right: -5.5rem;
     width: 20%;
+  }
+
+  h3 {
+    margin-right: 12rem;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .top-navigation {
+    display: flex;
+    margin-right: 2rem;
+    visibility: visible;
+  }
+
+  .nav-links {
+    margin-right: 3rem;
+    padding-right: 7rem;
+    margin-left: -8rem;
+    font-size: 1.1rem;
+  }
+
+  .nav {
+    color: white;
+    font-family: 'Overpass', sans-serif;
+    text-decoration: none;
+  }
+
+  .nav:hover {
+    color: black;
+  }
+
+  .bottom-nav {
+    visibility: hidden;
   }
 }

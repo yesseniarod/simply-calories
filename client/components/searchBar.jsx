@@ -42,10 +42,14 @@ class SearchFood extends React.Component {
     const selected = event.target.getAttribute('data-id');
     const calories = event.target.getAttribute('data-calories');
     const serving = event.target.getAttribute('data-serving');
+    const image = event.target.getAttribute('data-image');
+    const unit = event.target.getAttribute('data-unit');
     const newItem = {
       name: selected,
       calories: calories,
-      serving: serving
+      serving: serving,
+      image: image,
+      unit: unit
     };
     const req = {
       method: 'POST',
@@ -81,7 +85,7 @@ class SearchFood extends React.Component {
             </button>
           </div>
         </form>
-        <div>
+        <div className="search-result-container">
           <ul className="search-results">
             <div className="result-list">
             {this.state.result.map(item => {
@@ -95,8 +99,8 @@ class SearchFood extends React.Component {
                   <p className="serving">Serving: {item.serving_qty.toFixed(1)} {item.serving_unit}</p>
                 </div>
                 <div className="add">
-                  <button className="add-item" onClick={this.selectItem} data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty}>
-                    <i className="fas fa-plus add-icon" data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty}></i>
+                  <button className="add-item" onClick={this.selectItem} data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty} data-image={item.photo.thumb} data-unit={item.serving_unit}>
+                    <i className="fas fa-plus add-icon" data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty} data-image={item.photo.thumb} data-unit={item.serving_unit}></i>
                 </button>
                 </div>
               </li>;

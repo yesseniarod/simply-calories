@@ -4,6 +4,7 @@ import UserForm from './components/form';
 import SummaryTable from './components/table';
 import parseRoute from './lib/parse-route';
 import FoodJournal from './pages/food-journal';
+import FoodEntries from './components/food-entries';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -41,6 +42,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'food-journal') {
       return <FoodJournal />;
+    }
+    if (route.path === 'food-journal-entries') {
+      return <FoodEntries />;
     }
   }
 
