@@ -51,7 +51,7 @@ class SearchExercise extends React.Component {
             <input
             name="inputValue"
             type="search"
-            placeholder="exercise + duration"
+            placeholder="exercise + duration/distance/reps"
             onChange={this.handleInput} />
             <button className="search-button">
               <i className="fas fa-search search-icon"></i>
