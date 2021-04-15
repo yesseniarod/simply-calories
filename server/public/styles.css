@@ -76,6 +76,7 @@ i {
   padding-top: 4rem;
   font-family: 'Overpass', sans-serif;
   font-size: 1.25rem;
+  font-weight: 300;
 }
 
 table {
@@ -95,6 +96,7 @@ th {
   padding-top: 1rem;
   padding-bottom: 1rem;
   font-family: 'Overpass', sans-serif;
+  font-weight: 300;
 }
 
 .border-right {
@@ -160,12 +162,14 @@ p {
   padding-left: 2.75rem;
 }
 
-.redirect-food-journal {
+.redirect-food-journal,
+.redirect-workout-journal {
   color: black;
   text-decoration: none;
 }
 
-.redirect-food-journal:hover {
+.redirect-food-journal:hover,
+.redirect-workout-journal:hover {
   background-color: #16c79a;
 }
 

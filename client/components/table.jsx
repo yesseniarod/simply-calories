@@ -65,8 +65,8 @@ class SummaryTable extends React.Component {
                   <p><a href="#food-journal" className="redirect-food-journal">Food journal</a></p>
                 </div>
                 <div>
-                  <i className="fas fa-dumbbell dumbbell-icon"></i>
-                  <p>Workout journal</p>
+                <a href="#workout-journal"><i className="fas fa-dumbbell dumbbell-icon"></i></a>
+                <p><a href="#workout-journal" className="redirect-workout-journal"> Workout journal</a></p>
                 </div>
               </div>
             </div>
