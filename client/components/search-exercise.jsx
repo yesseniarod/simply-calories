@@ -4,9 +4,11 @@ class SearchExercise extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: ''
+      inputValue: '',
+      result: []
     };
     this.handleInput = this.handleInput.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleInput(event) {
@@ -16,15 +18,40 @@ class SearchExercise extends React.Component {
     });
   }
 
+  handleSearch(event) {
+    event.preventDefault();
+    const content = JSON.stringify({
+      query: this.state.inputValue
+    });
+    const req = {
+      method: 'POST',
+      headers: {
+        'x-app-id': process.env.REACT_APP_API_ID,
+        'x-app-key': process.env.REACT_APP_API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: content
+    };
+
+    fetch('https://trackapi.nutritionix.com/v2/natural/exercise', req)
+      .then(res => res.json())
+      .then(input => {
+        this.setState({
+          result: this.state.result.concat(input)
+        });
+      })
+      .catch(error => console.error(error));
+  }
+
   render() {
     return (
       <>
-        <form className="search">
+        <form className="search" onSubmit={this.handleSearch}>
           <div className="searchbar">
             <input
             name="inputValue"
             type="search"
-            placeholder="exercise + distance/duration"
+            placeholder="exercise + duration"
             onChange={this.handleInput} />
             <button className="search-button">
               <i className="fas fa-search search-icon"></i>
