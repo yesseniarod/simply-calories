@@ -23,11 +23,22 @@ class WorkoutEntries extends React.Component {
       .catch(error => console.error(error));
   }
 
+  sumCalories(items) {
+    let total = 0;
+    for (let i = 0; i < this.state.items.length; i++) {
+      total += this.state.items[i].calories;
+    }
+    return total;
+  }
+
   render() {
+    const burned = this.sumCalories(this.state.items);
+
     return (
       <>
       <div className="entry-heading">
         <h2 className="workout-title">Workout journal</h2>
+        <h3>{burned} calories</h3>
       </div>
       <div className="search-result-container">
         <ul className="entries-list">
