@@ -54,9 +54,21 @@ class SearchExercise extends React.Component {
       duration: duration,
       calories: calories
     };
-    this.setState({
-      items: newItem
-    });
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newItem)
+    };
+    fetch('/api/workout-journal', req)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          items: this.state.items.concat(data)
+        });
+      })
+      .catch(error => console.error(error));
   }
 
   render() {
