@@ -69,6 +69,11 @@ class SearchExercise extends React.Component {
                       <p> Duration: {item.duration_min} minutes</p>
                       <p>Calories: {item.nf_calories}</p>
                     </div>
+                    <div className="add">
+                      <button className="add-item">
+                        <i className="fas fa-plus add-icon"></i>
+                      </button>
+                    </div>
                   </li>;
                 })
               }
