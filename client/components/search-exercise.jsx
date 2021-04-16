@@ -91,8 +91,8 @@ class SearchExercise extends React.Component {
           <ul className="search-results">
             <div className="result-list">
               {
-                this.state.result.map(item => {
-                  return <li key={item.tag_id} className="exercise-item">
+                this.state.result.map((item, index) => {
+                  return <li key={index} className="exercise-item">
                     <div className="exercise-description">
                       <p> {item.name[0].toUpperCase() + item.name.slice(1)} </p>
                       <p> Duration: {item.duration_min} minutes</p>
