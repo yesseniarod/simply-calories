@@ -77,6 +77,7 @@ class SearchExercise extends React.Component {
         <form className="search" onSubmit={this.handleSearch}>
           <div className="searchbar">
             <input
+            required
             name="inputValue"
             type="search"
             placeholder="exercise + duration"

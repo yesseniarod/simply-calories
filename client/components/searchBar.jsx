@@ -76,6 +76,7 @@ class SearchFood extends React.Component {
           onSubmit={this.handleSearch}>
           <div className="searchbar">
             <input
+            required
               name="inputValue"
               type="search"
               placeholder="food search"
