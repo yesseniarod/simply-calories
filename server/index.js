@@ -116,7 +116,34 @@ app.get('/api/food-journal', (req, res) => {
     .catch(err => {
       console.error(err);
       res.status(500).json({
-        error: 'an unexpected error occured'
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
+app.post('/api/workout-journal', (req, res) => {
+  const { name, duration, calories } = req.body;
+  if (name === null || duration === null || calories === null) {
+    res.status(400).json({
+      error: 'name, duration, and calories are required'
+    });
+    return;
+  }
+  const sql = `
+      insert into "workout-journal" ("name", "duration", "calories")
+      values ($1, $2, $3)
+      returning *
+  `;
+  const params = [name, duration, calories];
+  db.query(sql, params)
+    .then(result => {
+      const [item] = result.rows;
+      res.status(201).json(item);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
       });
     });
 });
