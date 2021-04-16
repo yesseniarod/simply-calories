@@ -216,7 +216,8 @@ ul {
   list-style: none;
 }
 
-li {
+li,
+.exercise-item {
   margin-bottom: 2rem;
   border-bottom: 1px solid black;
   width: 90%;
@@ -313,4 +314,8 @@ h3 {
   font-size: 1.1rem;
   padding-top: 3rem;
   margin-left: 1.1rem;
+}
+
+.exercise-description {
+  margin-bottom: -1.5rem;
 }
