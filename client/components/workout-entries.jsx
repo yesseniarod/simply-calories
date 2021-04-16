@@ -8,6 +8,10 @@ class WorkoutEntries extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.getEntries();
+  }
+
   getEntries() {
     fetch('/api/workout-journal')
       .then(res => res.json())
