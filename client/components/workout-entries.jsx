@@ -8,6 +8,17 @@ class WorkoutEntries extends React.Component {
     };
   }
 
+  getEntries() {
+    fetch('/api/workout-journal')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          items: data
+        });
+      })
+      .catch(error => console.error(error));
+  }
+
   render() {
     return (
       <>
