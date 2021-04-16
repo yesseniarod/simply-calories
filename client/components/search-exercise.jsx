@@ -83,14 +83,16 @@ class SearchExercise extends React.Component {
                     <div className="exercise-description">
                       <p> {item.name[0].toUpperCase() + item.name.slice(1)} </p>
                       <p> Duration: {item.duration_min} minutes</p>
-                      <p>Calories: {item.nf_calories}</p>
+                      <p>Calories: {item.nf_calories.toFixed()}</p>
                     </div>
                     <div className="add">
                       <button className="add-item"
-                      data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min}
-                      data-calories={item.nf_calories}
-                      onClick={this.selectExercise}>
-                        <i className="fas fa-plus add-icon" data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min} data-calories={item.nf_calories}></i>
+                       data-id={item.name[0].toUpperCase() + item.name.slice(1)}
+                        data-duration={item.duration_min}
+                        data-calories={item.nf_calories}
+                        onClick={this.selectExercise}>
+                        <i className="fas fa-plus add-icon"
+                        data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min} data-calories={item.nf_calories}></i>
                       </button>
                     </div>
                   </li>;

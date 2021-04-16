@@ -28,3 +28,12 @@ create table "public"."food-journal" (
   "createdAt"      timestamptz(6) not null default now(),
   primary key ("foodId")
 );
+
+create table "public"."workout-journal" (
+  "workoutId"      serial,
+  "name"           text              not null,
+  "duration"       float             not null,
+  "calories"       float             not null,
+  "createdAt"      timestamptz(6) not null default now(),
+  primary key ("workoutId")
+ );
