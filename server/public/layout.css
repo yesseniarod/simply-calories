@@ -100,6 +100,11 @@
     margin-left: 1rem;
     padding-bottom: 2rem;
   }
+
+  .exercise-entry-description {
+    margin-left: 1rem;
+    padding-bottom: 0.5rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {

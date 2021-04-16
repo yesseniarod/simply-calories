@@ -319,3 +319,12 @@ h3 {
 .exercise-description {
   margin-bottom: -1.5rem;
 }
+
+.exercise-entry-description {
+  margin-bottom: 0.5rem;
+}
+
+.entries-list {
+  list-style: none;
+  margin-top: 5rem;
+}

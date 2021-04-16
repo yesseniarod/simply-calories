@@ -6,6 +6,7 @@ import parseRoute from './lib/parse-route';
 import FoodJournal from './pages/food-journal';
 import FoodEntries from './components/food-entries';
 import WorkoutJournal from './pages/workout-journal';
+import WorkoutEntries from './components/workout-entries';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -35,10 +36,10 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === '') {
+    if (route.path === 'profile') {
       return <UserForm setUser={this.setUser}/>;
     }
-    if (route.path === 'summary') {
+    if (route.path === 'home') {
       return <SummaryTable {...this.state.user}/>;
     }
     if (route.path === 'food-journal') {
@@ -49,6 +50,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'workout-journal') {
       return <WorkoutJournal />;
+    }
+    if (route.path === 'workout-journal-entries') {
+      return <WorkoutEntries />;
     }
   }
 
