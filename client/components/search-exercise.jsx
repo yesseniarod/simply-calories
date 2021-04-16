@@ -5,10 +5,12 @@ class SearchExercise extends React.Component {
     super(props);
     this.state = {
       inputValue: '',
-      result: []
+      result: [],
+      items: []
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.selectExercise = this.selectExercise.bind(this);
   }
 
   handleInput(event) {
@@ -43,6 +45,20 @@ class SearchExercise extends React.Component {
       .catch(error => console.error(error));
   }
 
+  selectExercise(event) {
+    const exercise = event.target.getAttribute('data-id');
+    const duration = event.target.getAttribute('data-duration');
+    const calories = event.target.getAttribute('data-calories');
+    const newItem = {
+      name: exercise,
+      duration: duration,
+      calories: calories
+    };
+    this.setState({
+      items: newItem
+    });
+  }
+
   render() {
     return (
       <>
@@ -70,7 +86,10 @@ class SearchExercise extends React.Component {
                       <p>Calories: {item.nf_calories}</p>
                     </div>
                     <div className="add">
-                      <button className="add-item" data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min} data-calories={item.nf_calories}>
+                      <button className="add-item"
+                      data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min}
+                      data-calories={item.nf_calories}
+                      onClick={this.selectExercise}>
                         <i className="fas fa-plus add-icon" data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min} data-calories={item.nf_calories}></i>
                       </button>
                     </div>
