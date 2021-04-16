@@ -37,7 +37,7 @@ class SearchExercise extends React.Component {
       .then(res => res.json())
       .then(input => {
         this.setState({
-          result: this.state.result.concat(input)
+          result: this.state.result.concat(input.exercises)
         });
       })
       .catch(error => console.error(error));
@@ -51,13 +51,30 @@ class SearchExercise extends React.Component {
             <input
             name="inputValue"
             type="search"
-            placeholder="exercise + duration/distance/reps"
+            placeholder="exercise + duration"
             onChange={this.handleInput} />
             <button className="search-button">
               <i className="fas fa-search search-icon"></i>
             </button>
           </div>
         </form>
+        <div className="search-result-container">
+          <ul className="search-results">
+            <div className="result-list">
+              {
+                this.state.result.map(item => {
+                  return <li key={item.tag_id} className="exercise-item">
+                    <div className="exercise-description">
+                      <p> {item.name[0].toUpperCase()}{item.name.slice(1)} </p>
+                      <p> Duration: {item.duration_min} minutes</p>
+                      <p>Calories: {item.nf_calories}</p>
+                    </div>
+                  </li>;
+                })
+              }
+            </div>
+          </ul>
+        </div>
       </>
     );
   }

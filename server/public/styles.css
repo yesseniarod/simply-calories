@@ -216,7 +216,8 @@ ul {
   list-style: none;
 }
 
-li {
+li,
+.exercise-item {
   margin-bottom: 2rem;
   border-bottom: 1px solid black;
   width: 90%;
