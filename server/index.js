@@ -152,7 +152,8 @@ app.get('/api/workout-journal', (req, res) => {
   const sql = `
     select "name",
           "duration",
-          "calories"
+          "calories",
+          "workoutId"
     from "workout-journal"
     order by "workoutId"
   `;
