@@ -65,13 +65,13 @@ class SearchExercise extends React.Component {
                 this.state.result.map(item => {
                   return <li key={item.tag_id} className="exercise-item">
                     <div className="exercise-description">
-                      <p> {item.name[0].toUpperCase()}{item.name.slice(1)} </p>
+                      <p> {item.name[0].toUpperCase() + item.name.slice(1)} </p>
                       <p> Duration: {item.duration_min} minutes</p>
                       <p>Calories: {item.nf_calories}</p>
                     </div>
                     <div className="add">
-                      <button className="add-item">
-                        <i className="fas fa-plus add-icon"></i>
+                      <button className="add-item" data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min} data-calories={item.nf_calories}>
+                        <i className="fas fa-plus add-icon" data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min} data-calories={item.nf_calories}></i>
                       </button>
                     </div>
                   </li>;
