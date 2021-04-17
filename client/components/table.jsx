@@ -1,11 +1,14 @@
 import React from 'react';
 import calorieCalculator from '../lib/calorieCalculator';
+import sumCalories from '../lib/sum';
 
 class SummaryTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalOpen: false
+      modalOpen: false,
+      items: [],
+      activity: []
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -23,29 +26,59 @@ class SummaryTable extends React.Component {
     });
   }
 
+  getFoodEntries() {
+    fetch('/api/food-journal')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          items: data
+        });
+      })
+      .catch(error => console.error(error));
+  }
+
+  getWorkoutEntries() {
+    fetch('/api/workout-journal')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          activity: data
+        });
+      })
+      .catch(error => console.error(error));
+  }
+
+  componentDidMount() {
+    this.getFoodEntries();
+    this.getWorkoutEntries();
+  }
+
   render() {
     const calories = calorieCalculator(this.props.gender, this.props.age, this.props.height, this.props.goalWeight, this.props.activityLevel);
+
+    const consumed = sumCalories(this.state.items);
+    const burned = sumCalories(this.state.activity);
     return (
       <>
         <h2 className="table-title">Today</h2>
         <table>
           <thead>
             <tr>
-              <th colSpan="3">{calories} calories remaining</th>
+              <th colSpan="3">{(calories - consumed) + burned} calories remaining</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td className="border-right">
-                0
+                {consumed}
               <p>consumed</p>
               </td>
               <td className="border-right">
-                0
+                {burned}
               <p>burned</p>
               </td>
               <td>
-                0
+                {consumed - burned}
               <p>net</p>
               </td>
             </tr>

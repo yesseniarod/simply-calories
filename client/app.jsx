@@ -40,7 +40,7 @@ export default class App extends React.Component {
       return <UserForm setUser={this.setUser}/>;
     }
     if (route.path === 'home') {
-      return <SummaryTable {...this.state.user}/>;
+      return <SummaryTable {...this.state.user} items={this.state.items} activity={this.state.activity}/>;
     }
     if (route.path === 'food-journal') {
       return <FoodJournal />;

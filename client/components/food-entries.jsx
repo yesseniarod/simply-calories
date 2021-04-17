@@ -1,4 +1,5 @@
 import React from 'react';
+import sumCalories from '../lib/sum';
 
 class FoodEntries extends React.Component {
   constructor(props) {
@@ -23,16 +24,8 @@ class FoodEntries extends React.Component {
       .catch(error => console.error(error));
   }
 
-  sumCalories(items) {
-    let total = 0;
-    for (let i = 0; i < this.state.items.length; i++) {
-      total += this.state.items[i].calories;
-    }
-    return total;
-  }
-
   render() {
-    const consumed = this.sumCalories(this.state.items);
+    const consumed = sumCalories(this.state.items);
     return (
        <>
        <div className="entry-heading">
