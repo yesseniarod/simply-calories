@@ -10,7 +10,8 @@ export default function PageContainer(props) {
         <div className="top-navigation">
           <h3 className="nav-links"><a href="#home" className="nav">Home</a></h3>
           <h3 className="nav-links"><a href="#profile" className="nav">Profile</a></h3>
-          <h3 className="nav-links"><a href= "#food-journal-entries"className="nav">Progress</a></h3>
+          <h3 className="nav-links"><a href= "#food-journal-entries"className="nav">Food</a></h3>
+          <h3 className="nav-links"><a href="#workout-journal-entries" className="nav">Activity</a></h3>
         </div>
       </div>
       <div className="content">
@@ -18,7 +19,8 @@ export default function PageContainer(props) {
       </div>
       <div className="footer">
       <div className="bottom-nav">
-          <a href="#food-journal-entries"><i className="fas fa-chart-bar chart-icon"> </i></a>
+          <a href="#workout-journal-entries"><i className="fas fa-dumbbell nav-workout"></i></a>
+          <a href="#food-journal-entries"><i className="fas fa-utensils nav-food"></i></a>
           <a href="#home"><i className="far fa-calendar calendar-icon"></i></a>
           <a href="#profile"><i className="fas fa-user-circle profile-icon"></i></a>
       </div>
