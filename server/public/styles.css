@@ -328,3 +328,32 @@ h3 {
   list-style: none;
   margin-top: 5rem;
 }
+
+.introduction {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+  flex-flow: column;
+  align-items: center;
+}
+
+.next-page {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #16c79a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-family: 'Overpass', sans-serif;
+  font-size: 1.25rem;
+}
+
+.next-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}

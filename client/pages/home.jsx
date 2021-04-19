@@ -3,17 +3,20 @@ import React from 'react';
 export default function Home(props) {
   return (
     <>
-    <div className="header">
-    <div className="title">
-      <h1>Simply Calories</h1>
-    </div>
-    </div>
+
     <div className="content">
-
+      <div className="introduction">
+        <h2>Welcome to Simply Calories!</h2>
+        <p>We know counting calories can be difficult, </p>
+        <p>we&apos;re here to make it simple</p>
+      </div>
+      <div className="next-container">
+        <div className="next-page">
+          <a href="#profile"><i className="fas fa-arrow-right"></i></a>
+          </div>
+      </div>
     </div>
-    <div className="footer">
 
-    </div>
     </>
   );
 }

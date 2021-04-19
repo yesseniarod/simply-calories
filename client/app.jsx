@@ -7,6 +7,7 @@ import FoodJournal from './pages/food-journal';
 import FoodEntries from './components/food-entries';
 import WorkoutJournal from './pages/workout-journal';
 import WorkoutEntries from './components/workout-entries';
+import Home from './pages/home';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -53,6 +54,10 @@ export default class App extends React.Component {
     }
     if (route.path === 'workout-journal-entries') {
       return <WorkoutEntries />;
+    }
+
+    if (route.path === '') {
+      return <Home />;
     }
   }
 
