@@ -1,10 +1,11 @@
 import React from 'react';
+import sumCalories from '../lib/sum';
 
 class WorkoutEntries extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      activity: []
     };
   }
 
@@ -17,22 +18,14 @@ class WorkoutEntries extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          items: data
+          activity: data
         });
       })
       .catch(error => console.error(error));
   }
 
-  sumCalories(items) {
-    let total = 0;
-    for (let i = 0; i < this.state.items.length; i++) {
-      total += this.state.items[i].calories;
-    }
-    return total;
-  }
-
   render() {
-    const burned = this.sumCalories(this.state.items);
+    const burned = sumCalories(this.state.activity);
 
     return (
       <>
@@ -44,7 +37,7 @@ class WorkoutEntries extends React.Component {
         <ul className="entries-list">
           <div className="result-list">
             {
-              this.state.items.map(item => {
+              this.state.activity.map(item => {
                 return <li key={item.workoutId}>
                   <div className="exercise-entry-description">
                     <p>{item.name}</p>

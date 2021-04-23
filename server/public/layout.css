@@ -105,6 +105,15 @@
     margin-left: 1rem;
     padding-bottom: 0.5rem;
   }
+
+  .submit-button {
+    background-color: #16c79a;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    margin-top: 5rem;
+    border: none;
+  }
 }
 
 @media screen and (min-width: 1024px) {

@@ -63,7 +63,6 @@ label {
   border-radius: 50%;
   height: 3rem;
   width: 3rem;
-  margin-top: 5rem;
   border: none;
 }
 
@@ -117,7 +116,7 @@ p {
 .modal-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 8rem;
+  margin-top: 6rem;
 }
 
 .modal-button {
@@ -298,7 +297,8 @@ h3 {
   align-items: center;
 }
 
-.chart-icon,
+.nav-food,
+.nav-workout,
 .calendar-icon,
 .profile-icon {
   font-size: 2rem;
@@ -326,5 +326,34 @@ h3 {
 
 .entries-list {
   list-style: none;
+  margin-top: 5rem;
+}
+
+.introduction {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+  flex-flow: column;
+  align-items: center;
+}
+
+.next-page {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #16c79a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-family: 'Overpass', sans-serif;
+  font-size: 1.25rem;
+}
+
+.next-container {
+  display: flex;
+  justify-content: center;
   margin-top: 5rem;
 }
