@@ -53,9 +53,17 @@ class SummaryTable extends React.Component {
     this.getWorkoutEntries();
   }
 
-  render() {
-    const calories = calorieCalculator(this.props.gender, this.props.age, this.props.height, this.props.goalWeight, this.props.activityLevel);
+  getCalories() {
+    let calories = calorieCalculator(this.props.gender, this.props.age, this.props.height, this.props.goalWeight, this.props.activityLevel);
+    if (isNaN(calories)) {
+      calories = 0;
+    }
+    return calories;
+  }
 
+  render() {
+
+    const calories = this.getCalories();
     const consumed = sumCalories(this.state.items);
     const burned = sumCalories(this.state.activity);
     return (
