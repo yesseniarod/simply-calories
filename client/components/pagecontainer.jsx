@@ -19,8 +19,8 @@ export default function PageContainer(props) {
       </div>
       <div className="footer">
       <div className="bottom-nav">
-          <a href="#workout-journal-entries"><i className="fas fa-dumbbell nav-workout"></i></a>
-          <a href="#food-journal-entries"><i className="fas fa-utensils nav-food"></i></a>
+          <a href="#workout-journal"><i className="fas fa-dumbbell nav-workout"></i></a>
+          <a href="#food-journal"><i className="fas fa-utensils nav-food"></i></a>
           <a href="#home"><i className="far fa-calendar calendar-icon"></i></a>
           <a href="#profile"><i className="fas fa-user-circle profile-icon"></i></a>
       </div>
