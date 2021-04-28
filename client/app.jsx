@@ -56,7 +56,7 @@ export default class App extends React.Component {
       return <WorkoutEntries />;
     }
 
-    if (route.path === '') {
+    if (route.path === '' || route.path === 'sign-in' || route.path === 'sign-up') {
       return <Home />;
     }
   }

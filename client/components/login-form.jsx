@@ -20,10 +20,37 @@ export default class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // console.log('Submitted!');
+    const { action } = this.props;
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/credentials', req)
+      .then(res => res.json())
+      .then(result => {
+        if (action === 'sign-up') {
+          window.location.hash = 'sign-in';
+        }
+      });
   }
 
   render() {
+    const { action } = this.props;
+    const alternateHref = action === 'sign-up'
+      ? '#sign-in'
+      : '#sign-up';
+
+    const alternateAction = action === 'sign-up'
+      ? 'Sign in'
+      : 'Register now';
+
+    const buttonText = action === 'sign-up'
+      ? 'Register'
+      : 'Log In';
+
     return (
       <div className="login-container">
         <form onSubmit={this.handleSubmit}>
@@ -48,10 +75,14 @@ export default class LoginForm extends React.Component {
         </div>
         <div className="register">
           <div>
-          <a className="register-link">Register now</a>
+          <a className="register-link" href={alternateHref}>
+            {alternateAction}
+          </a>
           </div>
           <div className="login-button-container">
-          <button className="login-button">Log In</button>
+          <button className="login-button">
+            {buttonText}
+          </button>
           </div>
         </div>
 

@@ -170,7 +170,7 @@ app.get('/api/workout-journal', (req, res) => {
     });
 });
 
-app.post('/api/auth/sign-up', (req, res, next) => {
+app.post('/api/credentials', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
     res.status(400);
