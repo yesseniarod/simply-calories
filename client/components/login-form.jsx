@@ -8,6 +8,7 @@ export default class LoginForm extends React.Component {
       password: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -17,10 +18,15 @@ export default class LoginForm extends React.Component {
     });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    // console.log('Submitted!');
+  }
+
   render() {
     return (
       <div className="login-container">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="login">
           <label>Log In</label>
           </div>
