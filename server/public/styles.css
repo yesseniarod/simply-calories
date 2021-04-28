@@ -387,6 +387,7 @@ h2 {
 
 .register-link {
   text-decoration: underline;
+  font-family: 'Overpass', sans-serif;
 
   /* temporary no href yet */
 }
@@ -396,7 +397,8 @@ h2 {
   border: none;
   width: 5rem;
   height: 2rem;
-  border-radius: 3%;
+  border-radius: 5%;
+  color: white;
 }
 
 .username-label,
