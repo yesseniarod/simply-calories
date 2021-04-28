@@ -37,3 +37,12 @@ create table "public"."workout-journal" (
   "createdAt"      timestamptz(6) not null default now(),
   primary key ("workoutId")
  );
+
+ create table "public"."credentials" (
+  "userId"             serial,
+  "username"           text              not null,
+  "hashedPassword"     text              not null,
+  "createdAt"      timestamptz(6) not null default now(),
+  primary key ("userId"),
+  unique ("username")
+ );
