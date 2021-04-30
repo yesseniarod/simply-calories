@@ -81,7 +81,8 @@ export default class LoginForm extends React.Component {
                 required
                 name="password"
                 type="password"
-                onChange={this.handleChange} />
+                onChange={this.handleChange}
+                minLength ="6"/>
             </div>
             <div className="register">
               <div>
