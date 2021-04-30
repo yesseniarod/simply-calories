@@ -114,6 +114,11 @@
     margin-top: 5rem;
     border: none;
   }
+
+  .login-container {
+    width: 35%;
+    margin-top: 2rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -156,7 +161,7 @@
   }
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1025px) {
   .add {
     margin-left: auto;
     margin-bottom: -2rem;
@@ -179,6 +184,10 @@
     display: flex;
     margin-right: 2rem;
     visibility: visible;
+  }
+
+  .top-navigation.hide {
+    visibility: hidden;
   }
 
   .nav-links {

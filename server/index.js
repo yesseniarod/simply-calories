@@ -2,6 +2,7 @@ require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const pg = require('pg');
+const argon2 = require('argon2');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -167,6 +168,30 @@ app.get('/api/workout-journal', (req, res) => {
         error: 'an unexpected error occurred'
       });
     });
+});
+
+app.post('/api/credentials', (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    res.status(400);
+    res.send('username and password are required fields');
+    return;
+  }
+  argon2.hash(password)
+    .then(hashedPassword => {
+      const sql = `
+      insert into "credentials"("username", "hashedPassword")
+      values($1, $2)
+      returning "userId", "username", "createdAt"
+    `;
+      const values = [username, hashedPassword];
+      db.query(sql, values)
+        .then(result => {
+          res.status(201).json(result.rows);
+        })
+        .catch(err => next(err));
+    })
+    .catch(err => next(err));
 });
 
 app.listen(process.env.PORT, () => {

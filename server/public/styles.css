@@ -297,6 +297,10 @@ h3 {
   align-items: center;
 }
 
+.bottom-nav.hide {
+  visibility: hidden;
+}
+
 .nav-food,
 .nav-workout,
 .calendar-icon,
@@ -332,7 +336,7 @@ h3 {
 .introduction {
   display: flex;
   justify-content: center;
-  margin-top: 10rem;
+  margin-top: 5rem;
   flex-flow: column;
   align-items: center;
 }
@@ -356,4 +360,54 @@ h2 {
   display: flex;
   justify-content: center;
   margin-top: 5rem;
+}
+
+.login-container {
+  width: 70%;
+  background-color: #eeee;
+  padding-bottom: 1rem;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.login {
+  padding-bottom: 1.5rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  padding-top: 0.8rem;
+}
+
+.user,
+.password {
+  margin: 0 0.5rem 0.5rem;
+}
+
+.register {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0.5rem 0;
+  align-items: center;
+}
+
+.register-link {
+  font-family: 'Overpass', sans-serif;
+}
+
+.login-button {
+  background-color: #16c79a;
+  border: none;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 5%;
+  color: white;
+}
+
+.username-label,
+.password-label {
+  font-size: 0.9rem;
+}
+
+.form-title {
+  font-weight: 700;
 }
