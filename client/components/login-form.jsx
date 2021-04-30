@@ -22,7 +22,7 @@ export default class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { action } = this.props;
+    // const { action } = this.props;
     const req = {
       method: 'POST',
       headers: {
@@ -32,11 +32,7 @@ export default class LoginForm extends React.Component {
     };
     fetch('/api/credentials', req)
       .then(res => res.json())
-      .then(result => {
-        if (action === 'sign-up') {
-          window.location.hash = 'sign-in';
-        }
-      });
+      .catch(error => console.error(error));
   }
 
   changeText(event) {

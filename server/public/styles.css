@@ -391,10 +391,7 @@ h2 {
 }
 
 .register-link {
-  text-decoration: underline;
   font-family: 'Overpass', sans-serif;
-
-  /* temporary no href yet */
 }
 
 .login-button {
