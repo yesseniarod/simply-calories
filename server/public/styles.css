@@ -297,6 +297,10 @@ h3 {
   align-items: center;
 }
 
+.bottom-nav.hide {
+  visibility: hidden;
+}
+
 .nav-food,
 .nav-workout,
 .calendar-icon,

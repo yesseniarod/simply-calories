@@ -186,6 +186,10 @@
     visibility: visible;
   }
 
+  .top-navigation.hide {
+    visibility: hidden;
+  }
+
   .nav-links {
     margin-right: 3rem;
     padding-right: 7rem;
