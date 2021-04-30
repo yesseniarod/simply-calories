@@ -22,7 +22,6 @@ export default class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // const { action } = this.props;
     const req = {
       method: 'POST',
       headers: {
@@ -71,7 +70,7 @@ export default class LoginForm extends React.Component {
         <div className="login-container">
           <form onSubmit={this.handleSubmit}>
             <div className="login">
-              <label>
+              <label className="form-title">
                 {alternateText}
               </label>
             </div>

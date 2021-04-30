@@ -407,3 +407,7 @@ h2 {
 .password-label {
   font-size: 0.9rem;
 }
+
+.form-title {
+  font-weight: 700;
+}
