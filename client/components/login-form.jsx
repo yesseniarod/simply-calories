@@ -5,10 +5,12 @@ export default class LoginForm extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      isRegistered: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.changeText = this.changeText.bind(this);
   }
 
   handleChange(event) {
@@ -37,57 +39,68 @@ export default class LoginForm extends React.Component {
       });
   }
 
+  changeText(event) {
+    const status = this.state.isRegistered;
+    const toggle = { isRegistered: !status };
+    this.setState({
+      isRegistered: toggle.isRegistered
+    });
+  }
+
   render() {
-    const { action } = this.props;
-    const alternateHref = action === 'sign-up'
-      ? '#sign-in'
-      : '#sign-up';
-
-    const alternateAction = action === 'sign-up'
-      ? 'Sign in'
-      : 'Register now';
-
-    const buttonText = action === 'sign-up'
+    const current = this.state.isRegistered;
+    const alternateText = current === false
+      ? 'Sign Up'
+      : 'Log In';
+    const alternateLink = current === false
+      ? 'Sign In'
+      : 'Register';
+    const alternateButton = current === false
       ? 'Register'
       : 'Log In';
 
     return (
-      <div className="login-container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="login">
-          <label>Log In</label>
-          </div>
-          <div className="user">
-            <label className="username-label">Username</label>
-            <input
-            required
-            autoFocus
-            name="username"
-            onChange={this.handleChange}/>
-        </div>
-        <div className="password">
-          <label className="password-label">Password</label>
-          <input
-          required
-          name="password"
-          type="password"
-          onChange={this.handleChange}/>
-        </div>
-        <div className="register">
-          <div>
-          <a className="register-link" href={alternateHref}>
-            {alternateAction}
-          </a>
-          </div>
-          <div className="login-button-container">
-          <button className="login-button">
-            {buttonText}
-          </button>
-          </div>
-        </div>
+        <div className="login-container">
+          <form onSubmit={this.handleSubmit}>
+            <div className="login">
+              <label>
+                {alternateText}
+              </label>
+            </div>
+            <div className="user">
+              <label className="username-label">Username</label>
+              <input
+                required
+                autoFocus
+                name="username"
+                onChange={this.handleChange} />
+            </div>
+            <div className="password">
+              <label className="password-label">Password</label>
+              <input
+                required
+                name="password"
+                type="password"
+                onChange={this.handleChange} />
+            </div>
+            <div className="register">
+              <div>
+                <a className="register-link" href={'#'} onClick={this.changeText}>
+                  {alternateLink}
+                </a>
+              </div>
+              <div className="login-button-container">
+                <button className="login-button">
+                  {alternateButton}
+                </button>
+              </div>
+            </div>
 
-        </form>
-      </div>
+          </form>
+        </div>
     );
   }
 }
+
+// figure out how to change text when user clicks register/sign in
+// text that needs to be changed is sign up, register, and sign in
