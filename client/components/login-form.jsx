@@ -67,6 +67,9 @@ export default class LoginForm extends React.Component {
     const alternateButton = current === false
       ? 'Register'
       : 'Log In';
+    const alternateHref = current === false
+      ? '#sign-up'
+      : '#sign-in';
 
     return (
         <div className="login-container">
@@ -94,7 +97,7 @@ export default class LoginForm extends React.Component {
             </div>
             <div className="register">
               <div>
-                <a className="register-link" href={'#'} onClick={this.changeText}>
+                <a className="register-link" onClick={this.changeText} href={alternateHref}>
                   {alternateLink}
                 </a>
               </div>
@@ -110,6 +113,3 @@ export default class LoginForm extends React.Component {
     );
   }
 }
-
-// figure out how to change text when user clicks register/sign in
-// text that needs to be changed is sign up, register, and sign in
