@@ -5,8 +5,7 @@ export default class LoginForm extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: '',
-      isRegistered: false
+      password: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +21,7 @@ export default class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { action } = this.props;
     const req = {
       method: 'POST',
       headers: {
@@ -29,8 +29,13 @@ export default class LoginForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     };
-    fetch('/api/credentials', req)
+    fetch(`/api/credentials/${action}`, req)
       .then(res => res.json())
+      .then(result => {
+        if (action === 'sign-up') {
+          window.location.hash = 'sign-in';
+        }
+      })
       .catch(error => console.error(error));
   }
 
@@ -52,17 +57,17 @@ export default class LoginForm extends React.Component {
   }
 
   render() {
-    const current = this.state.isRegistered;
-    const alternateText = current === false
+    const { action } = this.props;
+    const alternateText = action === 'sign-in'
       ? 'Sign Up'
       : 'Log In';
-    const alternateLink = current === false
+    const alternateLink = action === 'sign-in'
       ? 'Sign In'
       : 'Register';
-    const alternateButton = current === false
+    const alternateButton = action === 'sign-in'
       ? 'Register'
       : 'Log In';
-    const alternateHref = current === false
+    const alternateHref = action === 'sign-in'
       ? '#sign-up'
       : '#sign-in';
 
@@ -92,7 +97,7 @@ export default class LoginForm extends React.Component {
             </div>
             <div className="register">
               <div>
-                <a className="register-link" onClick={this.changeText} href={alternateHref}>
+                <a className="register-link" href={alternateHref}>
                   {alternateLink}
                 </a>
               </div>
