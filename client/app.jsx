@@ -8,6 +8,7 @@ import FoodEntries from './components/food-entries';
 import WorkoutJournal from './pages/workout-journal';
 import WorkoutEntries from './components/workout-entries';
 import Home from './pages/home';
+import AppContext from './lib/app-context';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export default class App extends React.Component {
     };
     this.setUser = this.setUser.bind(this);
     this.renderPage = this.renderPage.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
   setUser(user) {
@@ -33,6 +35,12 @@ export default class App extends React.Component {
         route: parseRoute(window.location.hash)
       });
     });
+  }
+
+  handleSignIn(result) {
+    const { user, token } = result;
+    window.localStorage.setItem('react-context-jwt', token);
+    this.setState({ user });
   }
 
   renderPage() {
@@ -63,8 +71,18 @@ export default class App extends React.Component {
 
   render() {
 
-    return <PageContainer>
+    const { user, route } = this.state;
+    const { handleSignIn } = this;
+    const contextValue = { user, route, handleSignIn };
+
+    return (
+    <AppContext.Provider value={contextValue}>
+    <>
+    <PageContainer>
       {this.renderPage()}
-    </PageContainer>;
+    </PageContainer>
+    </>
+    </AppContext.Provider>
+    );
   }
 }

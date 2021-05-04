@@ -34,6 +34,8 @@ export default class LoginForm extends React.Component {
       .then(result => {
         if (action === 'sign-up') {
           window.location.hash = 'sign-in';
+        } else if (result.user && result.token) {
+          this.props.onSignIn(result);
         }
       })
       .catch(error => console.error(error));
@@ -59,14 +61,14 @@ export default class LoginForm extends React.Component {
   render() {
     const { action } = this.props;
     const alternateText = action === 'sign-in'
-      ? 'Sign Up'
-      : 'Log In';
+      ? 'Log In'
+      : 'Sign Up';
     const alternateLink = action === 'sign-in'
-      ? 'Sign In'
-      : 'Register';
-    const alternateButton = action === 'sign-in'
       ? 'Register'
-      : 'Log In';
+      : 'Sign In';
+    const alternateButton = action === 'sign-in'
+      ? 'Log In'
+      : 'Register';
     const alternateHref = action === 'sign-in'
       ? '#sign-up'
       : '#sign-in';

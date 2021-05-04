@@ -1,10 +1,12 @@
 import React from 'react';
 import LoginForm from '../components/login-form';
 import parseRoute from '../lib/parse-route';
+import AppContext from '../lib/app-context';
 
 export default class Home extends React.Component {
 
   render() {
+    const { handleSignIn } = this.context;
     const route = parseRoute(window.location.hash);
     return (
       <>
@@ -14,6 +16,7 @@ export default class Home extends React.Component {
           <LoginForm
             key={route.path}
             action={route.path}
+            onSignIn={handleSignIn}
           />
         </div>
 
@@ -21,3 +24,5 @@ export default class Home extends React.Component {
     );
   }
 }
+
+Home.contextType = AppContext;
