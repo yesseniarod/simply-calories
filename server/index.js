@@ -186,13 +186,18 @@ app.post('/api/credentials/sign-up', (req, res, next) => {
       returning "userId", "username", "createdAt"
     `;
       const values = [username, hashedPassword];
-      db.query(sql, values)
-        .then(result => {
-          res.status(201).json(result.rows);
-        })
-        .catch(err => next(err));
+      return db.query(sql, values);
     })
-    .catch(err => next(err));
+    .then(result => {
+      res.status(201).json(result.rows);
+    })
+    .catch(err => {
+      if (err.code === '23505') {
+        res.send(err.code);
+      } else {
+        next(err);
+      }
+    });
 });
 
 app.post('/api/credentials/sign-in', (req, res, next) => {

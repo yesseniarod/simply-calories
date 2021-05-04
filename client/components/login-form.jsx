@@ -6,7 +6,8 @@ export default class LoginForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      error: ''
+      error: '',
+      existingAccount: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,10 +33,16 @@ export default class LoginForm extends React.Component {
     fetch(`/api/credentials/${action}`, req)
       .then(res => res.json())
       .then(result => {
-        if (action === 'sign-up') {
-          window.location.hash = 'sign-in';
-        } else if (result.user && result.token) {
-          this.props.onSignIn(result);
+        if (result === 23505) {
+          this.setState({
+            existingAccount: true
+          });
+        } else {
+          if (action === 'sign-up') {
+            window.location.hash = 'sign-in';
+          } else if (result.user && result.token) {
+            this.props.onSignIn(result);
+          }
         }
       })
       .catch(error => {
@@ -46,12 +53,23 @@ export default class LoginForm extends React.Component {
   }
 
   handleError() {
+
     return (
         <div className='error'>
           <div>
           <span className='error-message'>Incorrect username or password</span>
           </div>
         </div>
+    );
+  }
+
+  handleExisting() {
+    return (
+      <div className='error'>
+        <div>
+          <span className='error-message'>Username unavailable, try again!</span>
+        </div>
+      </div>
     );
   }
 
@@ -83,6 +101,7 @@ export default class LoginForm extends React.Component {
         <div className="login-container">
           <form onSubmit={this.handleSubmit}>
             {(this.state.error) && this.handleError()}
+            {(this.state.existingAccount) && this.handleExisting()}
             <div className="login">
               <label className="form-title">
                 {alternateText}
