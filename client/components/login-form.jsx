@@ -5,11 +5,11 @@ export default class LoginForm extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      error: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.changeText = this.changeText.bind(this);
   }
 
   handleChange(event) {
@@ -38,15 +38,21 @@ export default class LoginForm extends React.Component {
           this.props.onSignIn(result);
         }
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        this.setState({
+          error: error.message
+        });
+      });
   }
 
-  changeText(event) {
-    const status = this.state.isRegistered;
-    const toggle = { isRegistered: !status };
-    this.setState({
-      isRegistered: toggle.isRegistered
-    });
+  handleError() {
+    return (
+        <div className='error'>
+          <div>
+          <span className='error-message'>Incorrect username or password</span>
+          </div>
+        </div>
+    );
   }
 
   componentDidMount() {
@@ -76,6 +82,7 @@ export default class LoginForm extends React.Component {
     return (
         <div className="login-container">
           <form onSubmit={this.handleSubmit}>
+            {(this.state.error) && this.handleError()}
             <div className="login">
               <label className="form-title">
                 {alternateText}

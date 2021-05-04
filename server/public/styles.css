@@ -411,3 +411,14 @@ h2 {
 .form-title {
   font-weight: 700;
 }
+
+.error {
+  text-align: center;
+  padding-top: 0.6rem;
+}
+
+.error-message {
+  font-family: 'Overpass', sans-serif;
+  font-size: 0.8rem;
+  color: red;
+}
