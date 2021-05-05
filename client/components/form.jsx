@@ -33,7 +33,7 @@ class UserForm extends React.Component {
     };
     fetch('/api/users', req)
       .then(res => res.json())
-      .then(user => this.props.setUser(user))
+      // .then(user => this.props.setUser(user))
       .catch(error => console.error(error));
   }
 

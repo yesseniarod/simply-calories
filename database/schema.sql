@@ -6,6 +6,15 @@ drop schema "public" cascade;
 
 create schema "public";
 
+ create table "public"."credentials" (
+  "userId"             serial,
+  "username"           text              not null,
+  "hashedPassword"     text              not null,
+  "createdAt"      timestamptz(6) not null default now(),
+  primary key ("userId"),
+  unique ("username")
+ );
+
 create table "public"."users" (
   "userId"         serial,
   "gender"         text           not null,
@@ -15,7 +24,9 @@ create table "public"."users" (
   "goalWeight"     integer           not null,
   "activityLevel"  text           not null,
   "createdAt"      timestamptz(6) not null default now(),
-  primary key ("userId")
+  primary key ("userId"),
+  foreign key ("userId")
+  references "credentials" ("userId")
 );
 
 create table "public"."food-journal" (
@@ -36,13 +47,4 @@ create table "public"."workout-journal" (
   "calories"       float             not null,
   "createdAt"      timestamptz(6) not null default now(),
   primary key ("workoutId")
- );
-
- create table "public"."credentials" (
-  "userId"             serial,
-  "username"           text              not null,
-  "hashedPassword"     text              not null,
-  "createdAt"      timestamptz(6) not null default now(),
-  primary key ("userId"),
-  unique ("username")
  );

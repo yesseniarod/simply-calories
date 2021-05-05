@@ -9,25 +9,28 @@ import WorkoutJournal from './pages/workout-journal';
 import WorkoutEntries from './components/workout-entries';
 import Home from './pages/home';
 import AppContext from './lib/app-context';
+import decodeToken from './lib/decode-token';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       user: null,
-      route: parseRoute(window.location.hash)
+      route: parseRoute(window.location.hash),
+      isAuthorizing: true
     };
-    this.setUser = this.setUser.bind(this);
+    // this.setUser = this.setUser.bind(this);
     this.renderPage = this.renderPage.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
-  setUser(user) {
-    this.setState({
-      user: user
-    });
+  // setUser(user) {
+  //   this.setState({
+  //     user: user
+  //   });
 
-  }
+  // }
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
@@ -35,6 +38,9 @@ export default class App extends React.Component {
         route: parseRoute(window.location.hash)
       });
     });
+    const token = window.localStorage.getItem('react-context-jwt');
+    const user = token ? decodeToken(token) : null;
+    this.setState({ user, isAuthorizing: false });
   }
 
   handleSignIn(result) {
@@ -43,10 +49,15 @@ export default class App extends React.Component {
     this.setState({ user });
   }
 
+  handleSignOut() {
+    window.localStorage.removeItem('react-context-jwt');
+    this.setState({ user: null });
+  }
+
   renderPage() {
     const { route } = this.state;
     if (route.path === 'profile') {
-      return <UserForm setUser={this.setUser}/>;
+      return <UserForm/>;
     }
     if (route.path === 'home') {
       return <SummaryTable {...this.state.user} items={this.state.items} activity={this.state.activity}/>;
@@ -72,13 +83,21 @@ export default class App extends React.Component {
   render() {
 
     const { user, route } = this.state;
-    const { handleSignIn } = this;
-    const contextValue = { user, route, handleSignIn };
+    const { handleSignIn, handleSignOut } = this;
+    const contextValue = { user, route, handleSignIn, handleSignOut };
 
     return (
     <AppContext.Provider value={contextValue}>
     <>
     <PageContainer>
+            <div className="sign-out">
+              {user !== null &&
+                <button className="sign-out-button" onClick={handleSignOut}>
+                  Sign out&nbsp;
+          <i className="fas fa-sign-out-alt"></i>
+                </button>
+              }
+            </div>
       {this.renderPage()}
     </PageContainer>
     </>

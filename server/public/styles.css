@@ -72,7 +72,7 @@ i {
 
 .table-title {
   text-align: center;
-  padding-top: 4rem;
+  padding-top: 1rem;
   font-family: 'Overpass', sans-serif;
   font-size: 1.25rem;
   font-weight: 300;
@@ -116,7 +116,7 @@ p {
 .modal-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 6rem;
+  margin-top: 4rem;
 }
 
 .modal-button {
@@ -394,7 +394,8 @@ h2 {
   font-family: 'Overpass', sans-serif;
 }
 
-.login-button {
+.login-button,
+.sign-out-button {
   background-color: #16c79a;
   border: none;
   width: 5rem;
@@ -421,4 +422,15 @@ h2 {
   font-family: 'Overpass', sans-serif;
   font-size: 0.8rem;
   color: red;
+}
+
+.sign-out {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sign-out-button {
+  background-color: black;
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
 }

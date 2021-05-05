@@ -17,6 +17,15 @@
   .register-link {
     font-size: 0.8rem;
   }
+
+  table {
+    height: 180px;
+  }
+
+  .modal-button-container {
+    margin: 0;
+    padding-top: 3rem;
+  }
 }
 
 @media screen and (min-width: 768px) {
