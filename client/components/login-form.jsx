@@ -73,14 +73,14 @@ export default class LoginForm extends React.Component {
     );
   }
 
-  componentDidMount() {
-    const topNavigation = document.querySelector('.top-navigation');
-    topNavigation.classList.add('hide');
+  // componentDidMount() {
+  //   const topNavigation = document.querySelector('.top-navigation');
+  //   topNavigation.classList.add('hide');
 
-    const bottomNavigation = document.querySelector('.bottom-nav');
-    bottomNavigation.classList.add('hide');
+  //   const bottomNavigation = document.querySelector('.bottom-nav');
+  //   bottomNavigation.classList.add('hide');
 
-  }
+  // }
 
   render() {
     const { action } = this.props;
