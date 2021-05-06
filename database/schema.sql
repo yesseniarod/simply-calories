@@ -31,20 +31,26 @@ create table "public"."users" (
 
 create table "public"."food-journal" (
   "foodId"         serial,
+  "userId"         integer,
   "name"           text              not null,
   "calories"       integer           not null,
   "serving"        float             not null,
   "image"          text              not null,
   "unit"           text              not null,
   "createdAt"      timestamptz(6) not null default now(),
-  primary key ("foodId")
+  primary key ("foodId"),
+  foreign key ("userId")
+  references "credentials" ("userId")
 );
 
 create table "public"."workout-journal" (
   "workoutId"      serial,
+  "userId"         integer,
   "name"           text              not null,
   "duration"       float             not null,
   "calories"       float             not null,
   "createdAt"      timestamptz(6) not null default now(),
-  primary key ("workoutId")
+  primary key ("workoutId"),
+  foreign key ("userId")
+  references "credentials" ("userId")
  );

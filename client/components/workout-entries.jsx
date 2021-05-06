@@ -1,5 +1,6 @@
 import React from 'react';
 import sumCalories from '../lib/sum';
+import AppContext from '../lib/app-context';
 
 class WorkoutEntries extends React.Component {
   constructor(props) {
@@ -14,7 +15,10 @@ class WorkoutEntries extends React.Component {
   }
 
   getEntries() {
-    fetch('/api/workout-journal')
+    const { user } = this.context;
+    if (!user) return null;
+    const userId = user.userId;
+    fetch(`/api/workout-journal/${userId}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -56,3 +60,4 @@ class WorkoutEntries extends React.Component {
 }
 
 export default WorkoutEntries;
+WorkoutEntries.contextType = AppContext;

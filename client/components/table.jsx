@@ -30,23 +30,37 @@ class SummaryTable extends React.Component {
   }
 
   getFoodEntries() {
-    fetch('/api/food-journal')
+    const { user } = this.context;
+    const userId = user.userId;
+    fetch(`/api/food-journal/${userId}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           items: data
         });
+        if (this.state.items.length === 0) {
+          this.setState({
+            items: []
+          });
+        }
       })
       .catch(error => console.error(error));
   }
 
   getWorkoutEntries() {
-    fetch('/api/workout-journal')
+    const { user } = this.context;
+    const userId = user.userId;
+    fetch(`/api/workout-journal/${userId}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           activity: data
         });
+        if (this.state.activity.length === 0) {
+          this.setState({
+            activity: []
+          });
+        }
       })
       .catch(error => console.error(error));
   }

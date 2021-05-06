@@ -58,11 +58,9 @@ export default class App extends React.Component {
     const { route, user } = this.state;
     if (route.path === 'profile') {
       return <UserForm />;
-      // setUser={this.setUser}
-      // figure out how to transfer recommended calories from UserForm to SummaryTable
     }
     if (route.path === 'home') {
-      return <SummaryTable {...this.state.user} items={this.state.items} activity={this.state.activity}/>;
+      return <SummaryTable />;
     }
     if (route.path === 'food-journal') {
       return <FoodJournal />;

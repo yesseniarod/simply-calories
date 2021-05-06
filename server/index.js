@@ -74,19 +74,19 @@ app.get('/api/users/:userId', (req, res) => {
 });
 
 app.post('/api/food-journal', (req, res) => {
-  const { name, calories, serving, image, unit } = req.body;
-  if (name === null || calories === null || serving === null || image === null || unit === null) {
+  const { userId, name, calories, serving, image, unit } = req.body;
+  if (userId === null || name === null || calories === null || serving === null || image === null || unit === null) {
     res.status(400).json({
       error: 'name, calories, serving, image, and unit are required'
     });
     return;
   }
   const sql = `
-       insert into "food-journal" ("name", "calories", "serving", "image", "unit")
-       values ($1, $2, $3, $4, $5)
+       insert into "food-journal" ("userId", "name", "calories", "serving", "image", "unit")
+       values ($1, $2, $3, $4, $5, $6)
        returning *
      `;
-  const params = [name, calories, serving, image, unit];
+  const params = [userId, name, calories, serving, image, unit];
   db.query(sql, params)
     .then(result => {
       const [item] = result.rows;
@@ -100,7 +100,12 @@ app.post('/api/food-journal', (req, res) => {
     });
 });
 
-app.get('/api/food-journal', (req, res) => {
+app.get('/api/food-journal/:userId', (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  if (!Number.isInteger(userId) || userId < 1) {
+    res.status(400).json({ error: 'userId must be a positive integer' });
+    return;
+  }
   const sql = `
     select "foodId",
             "name",
@@ -109,9 +114,10 @@ app.get('/api/food-journal', (req, res) => {
             "image",
             "unit"
     from "food-journal"
-    order by "foodId"
+    where "userId" = $1
   `;
-  db.query(sql)
+  const params = [userId];
+  db.query(sql, params)
     .then(result => {
       res.json(result.rows);
     })
@@ -124,19 +130,19 @@ app.get('/api/food-journal', (req, res) => {
 });
 
 app.post('/api/workout-journal', (req, res) => {
-  const { name, duration, calories } = req.body;
-  if (name === null || duration === null || calories === null) {
+  const { userId, name, duration, calories } = req.body;
+  if (userId === null || name === null || duration === null || calories === null) {
     res.status(400).json({
       error: 'name, duration, and calories are required'
     });
     return;
   }
   const sql = `
-      insert into "workout-journal" ("name", "duration", "calories")
-      values ($1, $2, $3)
+      insert into "workout-journal" ("userId","name", "duration", "calories")
+      values ($1, $2, $3, $4)
       returning *
   `;
-  const params = [name, duration, calories];
+  const params = [userId, name, duration, calories];
   db.query(sql, params)
     .then(result => {
       const [item] = result.rows;
@@ -150,16 +156,22 @@ app.post('/api/workout-journal', (req, res) => {
     });
 });
 
-app.get('/api/workout-journal', (req, res) => {
+app.get('/api/workout-journal/:userId', (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  if (!Number.isInteger(userId) || userId < 1) {
+    res.status(400).json({ error: 'userId must be a positive integer' });
+    return;
+  }
   const sql = `
     select "name",
           "duration",
           "calories",
           "workoutId"
     from "workout-journal"
-    order by "workoutId"
+    where "userId" = $1
   `;
-  db.query(sql)
+  const params = [userId];
+  db.query(sql, params)
     .then(result => {
       res.json(result.rows);
     })

@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 class SearchExercise extends React.Component {
   constructor(props) {
@@ -46,10 +47,12 @@ class SearchExercise extends React.Component {
   }
 
   selectExercise(event) {
+    const { user } = this.context;
     const exercise = event.target.getAttribute('data-id');
     const duration = event.target.getAttribute('data-duration');
     const calories = event.target.getAttribute('data-calories');
     const newItem = {
+      userId: user.userId,
       name: exercise,
       duration: duration,
       calories: calories
@@ -120,3 +123,4 @@ class SearchExercise extends React.Component {
 }
 
 export default SearchExercise;
+SearchExercise.contextType = AppContext;
