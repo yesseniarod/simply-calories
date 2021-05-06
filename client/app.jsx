@@ -55,9 +55,11 @@ export default class App extends React.Component {
   }
 
   renderPage() {
-    const { route } = this.state;
+    const { route, user } = this.state;
     if (route.path === 'profile') {
-      return <UserForm/>;
+      return <UserForm />;
+      // setUser={this.setUser}
+      // figure out how to transfer recommended calories from UserForm to SummaryTable
     }
     if (route.path === 'home') {
       return <SummaryTable {...this.state.user} items={this.state.items} activity={this.state.activity}/>;
@@ -75,13 +77,13 @@ export default class App extends React.Component {
       return <WorkoutEntries />;
     }
 
-    if (route.path === '' || route.path === 'sign-in' || route.path === 'sign-up') {
+    if (route.path === '' || route.path === 'sign-in' || route.path === 'sign-up' || user === null) {
       return <Home />;
     }
   }
 
   render() {
-
+    if (this.state.isAuthorizing) return null;
     const { user, route } = this.state;
     const { handleSignIn, handleSignOut } = this;
     const contextValue = { user, route, handleSignIn, handleSignOut };
