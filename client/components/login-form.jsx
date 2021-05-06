@@ -39,7 +39,7 @@ export default class LoginForm extends React.Component {
           });
         } else {
           if (action === 'sign-up') {
-            window.location.hash = 'sign-in';
+            window.location.hash = 'profile';
           } else if (result.user && result.token) {
             this.props.onSignIn(result);
           }
