@@ -7,7 +7,8 @@ class SearchFood extends React.Component {
     this.state = {
       inputValue: '',
       result: [],
-      items: []
+      items: [],
+      isAdded: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -65,15 +66,36 @@ class SearchFood extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          items: this.state.items.concat(data)
+          items: this.state.items.concat(data),
+          isAdded: true
         });
+        this.timer = setTimeout(() => {
+          this.setState({
+            isAdded: false
+          });
+        }, 1000);
       })
       .catch(error => console.error(error));
+  }
+
+  addedItem() {
+    return (
+      <div className="added">
+        <div className="message">
+          <p className="saved">Added!</p>
+        </div>
+      </div>
+    );
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
   }
 
   render() {
     return (
       <>
+        {this.state.isAdded && this.addedItem()}
         <form
           className="search"
           onSubmit={this.handleSearch}>

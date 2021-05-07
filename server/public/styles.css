@@ -266,6 +266,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  margin-top: -1rem;
 }
 
 h3 {
@@ -295,6 +296,8 @@ h3 {
   justify-content: space-around;
   height: 4rem;
   align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.1rem;
 }
 
 .bottom-nav.hide,
@@ -439,4 +442,18 @@ h2 {
 .arrow-right {
   color: black;
   font-size: 2.5rem;
+}
+
+.added {
+  text-align: center;
+}
+
+.message {
+  width: 50%;
+  background-color: #16c79a;
+  margin: auto;
+}
+
+.saved {
+  color: white;
 }

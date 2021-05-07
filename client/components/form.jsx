@@ -1,6 +1,4 @@
 import React from 'react';
-// import calorieCalculator from '../lib/calorieCalculator';
-// import AppContext from '../lib/app-context';
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -36,22 +34,11 @@ class UserForm extends React.Component {
     };
     fetch('/api/users', req)
       .then(res => res.json())
-      // .then(user => {
-      //   user = this.context;
-      // })
       .catch(error => console.error(error));
     this.setState({
       isSubmitted: true
     });
   }
-
-  // getCalories() {
-  //   let calories = calorieCalculator(this.stategender, this.state.age, this.state.height, this.state.goalWeight, this.state.activityLevel);
-  //   if (isNaN(calories)) {
-  //     calories = 0;
-  //   }
-  //   return calories;
-  // }
 
   redirectUser() {
     const button = document.querySelector('.submit-button');
@@ -161,5 +148,3 @@ class UserForm extends React.Component {
 }
 
 export default UserForm;
-
-// UserForm.contextType = AppContext;

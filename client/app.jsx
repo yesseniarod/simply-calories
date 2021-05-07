@@ -19,18 +19,10 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash),
       isAuthorizing: true
     };
-    // this.setUser = this.setUser.bind(this);
     this.renderPage = this.renderPage.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
-
-  // setUser(user) {
-  //   this.setState({
-  //     user: user
-  //   });
-
-  // }
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
