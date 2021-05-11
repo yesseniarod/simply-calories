@@ -73,7 +73,7 @@ class SearchFood extends React.Component {
           this.setState({
             isAdded: false
           });
-        }, 1000);
+        }, 2000);
       })
       .catch(error => console.error(error));
   }

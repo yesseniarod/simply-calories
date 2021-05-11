@@ -1,6 +1,7 @@
 import React from 'react';
 import sumCalories from '../lib/sum';
 import AppContext from '../lib/app-context';
+import Home from '../pages/home';
 
 class WorkoutEntries extends React.Component {
   constructor(props) {
@@ -30,6 +31,11 @@ class WorkoutEntries extends React.Component {
 
   render() {
     const burned = sumCalories(this.state.activity);
+    const { user } = this.context;
+
+    if (user === null) {
+      return <Home/>;
+    }
 
     return (
       <>

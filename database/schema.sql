@@ -37,7 +37,7 @@ create table "public"."food-journal" (
   "serving"        float             not null,
   "image"          text              not null,
   "unit"           text              not null,
-  "createdAt"      timestamptz(6) not null default now(),
+  "createdAt"      date              default current_date,
   primary key ("foodId"),
   foreign key ("userId")
   references "credentials" ("userId")
@@ -49,7 +49,7 @@ create table "public"."workout-journal" (
   "name"           text              not null,
   "duration"       float             not null,
   "calories"       float             not null,
-  "createdAt"      timestamptz(6) not null default now(),
+  "createdAt"      date              default current_date,
   primary key ("workoutId"),
   foreign key ("userId")
   references "credentials" ("userId")

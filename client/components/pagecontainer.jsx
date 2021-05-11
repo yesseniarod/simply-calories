@@ -9,7 +9,6 @@ export default function PageContainer(props) {
         </div>
         <div className="top-navigation">
           <h3 className="nav-links"><a href="#home" className="nav">Home</a></h3>
-          {/* <h3 className="nav-links"><a href="#profile" className="nav">Profile</a></h3> */}
           <h3 className="nav-links"><a href= "#food-journal"className="nav">Food</a></h3>
           <h3 className="nav-links"><a href="#workout-journal" className="nav">Activity</a></h3>
         </div>
@@ -22,7 +21,6 @@ export default function PageContainer(props) {
           <a href="#home"><i className="far fa-calendar calendar-icon"></i></a>
           <a href="#food-journal"><i className="fas fa-utensils nav-food"></i></a>
           <a href="#workout-journal"><i className="fas fa-dumbbell nav-workout"></i></a>
-          {/* <a href="#profile"><i className="fas fa-user-circle profile-icon"></i></a> */}
       </div>
       </div>
     </>

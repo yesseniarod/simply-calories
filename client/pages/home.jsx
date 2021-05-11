@@ -16,14 +16,11 @@ export default class Home extends React.Component {
     return (
       <>
 
-        <div className="introduction">
-          <h2>Welcome to Simply Calories!</h2>
           <LoginForm
             key={route.path}
             action={route.path}
             onSignIn={handleSignIn}
           />
-        </div>
 
       </>
     );

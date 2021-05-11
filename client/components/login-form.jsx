@@ -87,8 +87,13 @@ export default class LoginForm extends React.Component {
     const alternateHref = action === 'sign-in'
       ? '#sign-up'
       : '#sign-in';
+    const alternateGreeting = action === 'sign-in'
+      ? 'Welcome back!'
+      : 'Welcome to Simply Calories!';
 
     return (
+        <div className="introduction">
+          <h2>{alternateGreeting}</h2>
         <div className="login-container">
           <form onSubmit={this.handleSubmit}>
             {(this.state.error) && this.handleError()}
@@ -103,7 +108,8 @@ export default class LoginForm extends React.Component {
               <input
                 required
                 name="username"
-                onChange={this.handleChange} />
+                onChange={this.handleChange}
+                placeholder="demo: test" />
             </div>
             <div className="password">
               <label className="password-label">Password</label>
@@ -112,7 +118,8 @@ export default class LoginForm extends React.Component {
                 name="password"
                 type="password"
                 onChange={this.handleChange}
-                minLength ="6"/>
+                minLength ="6"
+                placeholder="demo: 123456"/>
             </div>
             <div className="register">
               <div>
@@ -129,6 +136,7 @@ export default class LoginForm extends React.Component {
 
           </form>
         </div>
+      </div>
     );
   }
 }

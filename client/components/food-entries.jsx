@@ -1,6 +1,7 @@
 import React from 'react';
 import sumCalories from '../lib/sum';
 import AppContext from '../lib/app-context';
+import Home from '../pages/home';
 
 class FoodEntries extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class FoodEntries extends React.Component {
 
   getEntries() {
     const { user } = this.context;
+
     if (!user) return null;
     const userId = user.userId;
     fetch(`/api/food-journal/${userId}`)
@@ -30,6 +32,12 @@ class FoodEntries extends React.Component {
 
   render() {
     const consumed = sumCalories(this.state.items);
+
+    const { user } = this.context;
+    if (user === null) {
+      return <Home />;
+    }
+
     return (
        <>
        <div className="entry-heading">

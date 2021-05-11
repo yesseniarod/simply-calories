@@ -114,7 +114,8 @@ app.get('/api/food-journal/:userId', (req, res) => {
             "image",
             "unit"
     from "food-journal"
-    where "userId" = $1
+    where "userId" = $1 AND
+          "createdAt" = current_date
   `;
   const params = [userId];
   db.query(sql, params)
@@ -168,7 +169,8 @@ app.get('/api/workout-journal/:userId', (req, res) => {
           "calories",
           "workoutId"
     from "workout-journal"
-    where "userId" = $1
+    where "userId" = $1 AND
+        "createdAt" = current_date
   `;
   const params = [userId];
   db.query(sql, params)

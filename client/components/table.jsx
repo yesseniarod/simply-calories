@@ -2,6 +2,7 @@ import React from 'react';
 import calorieCalculator from '../lib/calorieCalculator';
 import sumCalories from '../lib/sum';
 import AppContext from '../lib/app-context';
+import Home from '../pages/home';
 
 class SummaryTable extends React.Component {
   constructor(props) {
@@ -85,7 +86,7 @@ class SummaryTable extends React.Component {
         this.setState({
           calories
         });
-        if (isNaN(calories)) {
+        if (this.state.result === null) {
           calories = 0;
         }
         return calories;
@@ -98,6 +99,12 @@ class SummaryTable extends React.Component {
     const calories = this.state.calories;
     const consumed = sumCalories(this.state.items);
     const burned = sumCalories(this.state.activity);
+    const { user } = this.context;
+
+    if (user === null) {
+      return <Home/>;
+    }
+
     return (
       <>
         <h2 className="table-title">Today</h2>
