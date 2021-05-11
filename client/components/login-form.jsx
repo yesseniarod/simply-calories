@@ -6,11 +6,11 @@ export default class LoginForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      isRegistered: false
+      error: '',
+      existingAccount: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.changeText = this.changeText.bind(this);
   }
 
   handleChange(event) {
@@ -22,6 +22,7 @@ export default class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { action } = this.props;
     const req = {
       method: 'POST',
       headers: {
@@ -29,46 +30,74 @@ export default class LoginForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     };
-    fetch('/api/credentials', req)
+    fetch(`/api/credentials/${action}`, req)
       .then(res => res.json())
-      .catch(error => console.error(error));
+      .then(result => {
+        if (result === 23505) {
+          this.setState({
+            existingAccount: true
+          });
+        } else {
+          if (action === 'sign-up') {
+            window.location.hash = 'profile';
+          } else if (result.user && result.token) {
+            this.props.onSignIn(result);
+          }
+        }
+      })
+      .catch(error => {
+        this.setState({
+          error: error.message
+        });
+      });
   }
 
-  changeText(event) {
-    const status = this.state.isRegistered;
-    const toggle = { isRegistered: !status };
-    this.setState({
-      isRegistered: toggle.isRegistered
-    });
+  handleError() {
+
+    return (
+        <div className='error'>
+          <div>
+          <span className='error-message'>Incorrect username or password</span>
+          </div>
+        </div>
+    );
   }
 
-  componentDidMount() {
-    const topNavigation = document.querySelector('.top-navigation');
-    topNavigation.classList.add('hide');
-
-    const bottomNavigation = document.querySelector('.bottom-nav');
-    bottomNavigation.classList.add('hide');
-
+  handleExisting() {
+    return (
+      <div className='error'>
+        <div>
+          <span className='error-message'>Username unavailable, try again!</span>
+        </div>
+      </div>
+    );
   }
 
   render() {
-    const current = this.state.isRegistered;
-    const alternateText = current === false
-      ? 'Sign Up'
-      : 'Log In';
-    const alternateLink = current === false
-      ? 'Sign In'
-      : 'Register';
-    const alternateButton = current === false
+    const { action } = this.props;
+    const alternateText = action === 'sign-in'
+      ? 'Log In'
+      : 'Sign Up';
+    const alternateLink = action === 'sign-in'
       ? 'Register'
-      : 'Log In';
-    const alternateHref = current === false
+      : 'Sign In';
+    const alternateButton = action === 'sign-in'
+      ? 'Log In'
+      : 'Register';
+    const alternateHref = action === 'sign-in'
       ? '#sign-up'
       : '#sign-in';
+    const alternateGreeting = action === 'sign-in'
+      ? 'Welcome back!'
+      : 'Welcome to Simply Calories!';
 
     return (
+        <div className="introduction">
+          <h2>{alternateGreeting}</h2>
         <div className="login-container">
           <form onSubmit={this.handleSubmit}>
+            {(this.state.error) && this.handleError()}
+            {(this.state.existingAccount) && this.handleExisting()}
             <div className="login">
               <label className="form-title">
                 {alternateText}
@@ -79,7 +108,8 @@ export default class LoginForm extends React.Component {
               <input
                 required
                 name="username"
-                onChange={this.handleChange} />
+                onChange={this.handleChange}
+                placeholder="demo: test" />
             </div>
             <div className="password">
               <label className="password-label">Password</label>
@@ -88,11 +118,12 @@ export default class LoginForm extends React.Component {
                 name="password"
                 type="password"
                 onChange={this.handleChange}
-                minLength ="6"/>
+                minLength ="6"
+                placeholder="demo: 123456"/>
             </div>
             <div className="register">
               <div>
-                <a className="register-link" onClick={this.changeText} href={alternateHref}>
+                <a className="register-link" href={alternateHref}>
                   {alternateLink}
                 </a>
               </div>
@@ -105,6 +136,7 @@ export default class LoginForm extends React.Component {
 
           </form>
         </div>
+      </div>
     );
   }
 }

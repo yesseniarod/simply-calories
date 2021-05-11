@@ -1,6 +1,8 @@
 import React from 'react';
 import calorieCalculator from '../lib/calorieCalculator';
 import sumCalories from '../lib/sum';
+import AppContext from '../lib/app-context';
+import Home from '../pages/home';
 
 class SummaryTable extends React.Component {
   constructor(props) {
@@ -8,7 +10,9 @@ class SummaryTable extends React.Component {
     this.state = {
       modalOpen: false,
       items: [],
-      activity: []
+      activity: [],
+      result: null,
+      calories: null
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -27,23 +31,37 @@ class SummaryTable extends React.Component {
   }
 
   getFoodEntries() {
-    fetch('/api/food-journal')
+    const { user } = this.context;
+    const userId = user.userId;
+    fetch(`/api/food-journal/${userId}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           items: data
         });
+        if (this.state.items.length === 0) {
+          this.setState({
+            items: []
+          });
+        }
       })
       .catch(error => console.error(error));
   }
 
   getWorkoutEntries() {
-    fetch('/api/workout-journal')
+    const { user } = this.context;
+    const userId = user.userId;
+    fetch(`/api/workout-journal/${userId}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           activity: data
         });
+        if (this.state.activity.length === 0) {
+          this.setState({
+            activity: []
+          });
+        }
       })
       .catch(error => console.error(error));
   }
@@ -51,21 +69,42 @@ class SummaryTable extends React.Component {
   componentDidMount() {
     this.getFoodEntries();
     this.getWorkoutEntries();
+    this.getCalories();
   }
 
   getCalories() {
-    let calories = calorieCalculator(this.props.gender, this.props.age, this.props.height, this.props.goalWeight, this.props.activityLevel);
-    if (isNaN(calories)) {
-      calories = 0;
-    }
-    return calories;
+    const { user } = this.context;
+    if (!user) return null;
+    const userId = user.userId;
+    fetch(`/api/users/${userId}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          result: data
+        });
+        let calories = calorieCalculator(this.state.result.gender, this.state.result.age, this.state.result.height, this.state.result.goalWeight, this.state.result.activityLevel);
+        this.setState({
+          calories
+        });
+        if (this.state.result === null) {
+          calories = 0;
+        }
+        return calories;
+      })
+      .catch(error => console.error(error));
   }
 
   render() {
 
-    const calories = this.getCalories();
+    const calories = this.state.calories;
     const consumed = sumCalories(this.state.items);
     const burned = sumCalories(this.state.activity);
+    const { user } = this.context;
+
+    if (user === null) {
+      return <Home/>;
+    }
+
     return (
       <>
         <h2 className="table-title">Today</h2>
@@ -120,3 +159,4 @@ class SummaryTable extends React.Component {
 }
 
 export default SummaryTable;
+SummaryTable.contextType = AppContext;

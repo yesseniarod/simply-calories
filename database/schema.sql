@@ -6,6 +6,15 @@ drop schema "public" cascade;
 
 create schema "public";
 
+ create table "public"."credentials" (
+  "userId"             serial,
+  "username"           text              not null,
+  "hashedPassword"     text              not null,
+  "createdAt"      timestamptz(6) not null default now(),
+  primary key ("userId"),
+  unique ("username")
+ );
+
 create table "public"."users" (
   "userId"         serial,
   "gender"         text           not null,
@@ -15,34 +24,33 @@ create table "public"."users" (
   "goalWeight"     integer           not null,
   "activityLevel"  text           not null,
   "createdAt"      timestamptz(6) not null default now(),
-  primary key ("userId")
+  primary key ("userId"),
+  foreign key ("userId")
+  references "credentials" ("userId")
 );
 
 create table "public"."food-journal" (
   "foodId"         serial,
+  "userId"         integer,
   "name"           text              not null,
   "calories"       integer           not null,
   "serving"        float             not null,
   "image"          text              not null,
   "unit"           text              not null,
-  "createdAt"      timestamptz(6) not null default now(),
-  primary key ("foodId")
+  "createdAt"      date              default current_date,
+  primary key ("foodId"),
+  foreign key ("userId")
+  references "credentials" ("userId")
 );
 
 create table "public"."workout-journal" (
   "workoutId"      serial,
+  "userId"         integer,
   "name"           text              not null,
   "duration"       float             not null,
   "calories"       float             not null,
-  "createdAt"      timestamptz(6) not null default now(),
-  primary key ("workoutId")
- );
-
- create table "public"."credentials" (
-  "userId"             serial,
-  "username"           text              not null,
-  "hashedPassword"     text              not null,
-  "createdAt"      timestamptz(6) not null default now(),
-  primary key ("userId"),
-  unique ("username")
+  "createdAt"      date              default current_date,
+  primary key ("workoutId"),
+  foreign key ("userId")
+  references "credentials" ("userId")
  );

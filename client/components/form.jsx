@@ -9,7 +9,8 @@ class UserForm extends React.Component {
       height: '',
       currentWeight: '',
       goalWeight: '',
-      activityLevel: 'lightly active'
+      activityLevel: 'lightly active',
+      isSubmitted: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,8 +34,22 @@ class UserForm extends React.Component {
     };
     fetch('/api/users', req)
       .then(res => res.json())
-      .then(user => this.props.setUser(user))
       .catch(error => console.error(error));
+    this.setState({
+      isSubmitted: true
+    });
+  }
+
+  redirectUser() {
+    const button = document.querySelector('.submit-button');
+    button.classList.add('hide');
+    return (
+    <div className="redirect">
+      <a href="#sign-in">
+          <i className="fas fa-arrow-alt-circle-right arrow-right"></i>
+      </a>
+    </div>
+    );
   }
 
   render() {
@@ -120,6 +135,7 @@ class UserForm extends React.Component {
 
           </div>
           <div className="button-container">
+            {this.state.isSubmitted && this.redirectUser()}
             <button className="submit-button">
               <i className="fas fa-check"></i>
             </button>

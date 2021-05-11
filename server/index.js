@@ -3,6 +3,7 @@ const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const pg = require('pg');
 const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -73,19 +74,19 @@ app.get('/api/users/:userId', (req, res) => {
 });
 
 app.post('/api/food-journal', (req, res) => {
-  const { name, calories, serving, image, unit } = req.body;
-  if (name === null || calories === null || serving === null || image === null || unit === null) {
+  const { userId, name, calories, serving, image, unit } = req.body;
+  if (userId === null || name === null || calories === null || serving === null || image === null || unit === null) {
     res.status(400).json({
       error: 'name, calories, serving, image, and unit are required'
     });
     return;
   }
   const sql = `
-       insert into "food-journal" ("name", "calories", "serving", "image", "unit")
-       values ($1, $2, $3, $4, $5)
+       insert into "food-journal" ("userId", "name", "calories", "serving", "image", "unit")
+       values ($1, $2, $3, $4, $5, $6)
        returning *
      `;
-  const params = [name, calories, serving, image, unit];
+  const params = [userId, name, calories, serving, image, unit];
   db.query(sql, params)
     .then(result => {
       const [item] = result.rows;
@@ -99,7 +100,12 @@ app.post('/api/food-journal', (req, res) => {
     });
 });
 
-app.get('/api/food-journal', (req, res) => {
+app.get('/api/food-journal/:userId', (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  if (!Number.isInteger(userId) || userId < 1) {
+    res.status(400).json({ error: 'userId must be a positive integer' });
+    return;
+  }
   const sql = `
     select "foodId",
             "name",
@@ -108,9 +114,11 @@ app.get('/api/food-journal', (req, res) => {
             "image",
             "unit"
     from "food-journal"
-    order by "foodId"
+    where "userId" = $1 AND
+          "createdAt" = current_date
   `;
-  db.query(sql)
+  const params = [userId];
+  db.query(sql, params)
     .then(result => {
       res.json(result.rows);
     })
@@ -123,19 +131,19 @@ app.get('/api/food-journal', (req, res) => {
 });
 
 app.post('/api/workout-journal', (req, res) => {
-  const { name, duration, calories } = req.body;
-  if (name === null || duration === null || calories === null) {
+  const { userId, name, duration, calories } = req.body;
+  if (userId === null || name === null || duration === null || calories === null) {
     res.status(400).json({
       error: 'name, duration, and calories are required'
     });
     return;
   }
   const sql = `
-      insert into "workout-journal" ("name", "duration", "calories")
-      values ($1, $2, $3)
+      insert into "workout-journal" ("userId","name", "duration", "calories")
+      values ($1, $2, $3, $4)
       returning *
   `;
-  const params = [name, duration, calories];
+  const params = [userId, name, duration, calories];
   db.query(sql, params)
     .then(result => {
       const [item] = result.rows;
@@ -149,16 +157,23 @@ app.post('/api/workout-journal', (req, res) => {
     });
 });
 
-app.get('/api/workout-journal', (req, res) => {
+app.get('/api/workout-journal/:userId', (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  if (!Number.isInteger(userId) || userId < 1) {
+    res.status(400).json({ error: 'userId must be a positive integer' });
+    return;
+  }
   const sql = `
     select "name",
           "duration",
           "calories",
           "workoutId"
     from "workout-journal"
-    order by "workoutId"
+    where "userId" = $1 AND
+        "createdAt" = current_date
   `;
-  db.query(sql)
+  const params = [userId];
+  db.query(sql, params)
     .then(result => {
       res.json(result.rows);
     })
@@ -170,7 +185,7 @@ app.get('/api/workout-journal', (req, res) => {
     });
 });
 
-app.post('/api/credentials', (req, res, next) => {
+app.post('/api/credentials/sign-up', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
     res.status(400);
@@ -185,11 +200,56 @@ app.post('/api/credentials', (req, res, next) => {
       returning "userId", "username", "createdAt"
     `;
       const values = [username, hashedPassword];
-      db.query(sql, values)
-        .then(result => {
-          res.status(201).json(result.rows);
-        })
-        .catch(err => next(err));
+      return db.query(sql, values);
+    })
+    .then(result => {
+      res.status(201).json(result.rows);
+    })
+    .catch(err => {
+      if (err.code === '23505') {
+        res.send(err.code);
+      } else {
+        next(err);
+      }
+    });
+});
+
+app.post('/api/credentials/sign-in', (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    res.status(401);
+    res.send('invalid login');
+    return;
+  }
+  const sql = `
+        select "userId",
+               "hashedPassword"
+          from "credentials"
+          where "username" = $1
+  `;
+
+  const params = [username];
+  db.query(sql, params)
+    .then(result => {
+      const [user] = result.rows;
+      if (!user) {
+        res.status(401);
+        res.send('invalid login');
+        return;
+      }
+      const { userId, hashedPassword } = user;
+      return argon2
+        .verify(hashedPassword, password)
+        .then(isMatching => {
+          if (!isMatching) {
+            res.status(401);
+            res.send('invalid login');
+            return;
+          }
+          const payload = { userId, username };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          res.json({ token, user: payload });
+        });
     })
     .catch(err => next(err));
 });

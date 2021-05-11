@@ -1,8 +1,18 @@
 import React from 'react';
 import SearchFood from '../components/searchBar';
+import AppContext from '../lib/app-context';
+import Home from '../pages/home';
 
-export default function FoodJournal(props) {
-  return (
+export default class FoodJournal extends React.Component {
+
+  render() {
+    const { user } = this.context;
+
+    if (user === null) {
+      return <Home />;
+    }
+
+    return (
     <>
     <div className= "entry-heading">
       <h2 className="food-journal-title">Food journal</h2>
@@ -11,5 +21,8 @@ export default function FoodJournal(props) {
       <SearchFood />
 
     </>
-  );
+    );
+  }
 }
+
+FoodJournal.contextType = AppContext;

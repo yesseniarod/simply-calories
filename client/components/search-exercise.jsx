@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 class SearchExercise extends React.Component {
   constructor(props) {
@@ -6,7 +7,8 @@ class SearchExercise extends React.Component {
     this.state = {
       inputValue: '',
       result: [],
-      items: []
+      items: [],
+      isAdded: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -46,10 +48,12 @@ class SearchExercise extends React.Component {
   }
 
   selectExercise(event) {
+    const { user } = this.context;
     const exercise = event.target.getAttribute('data-id');
     const duration = event.target.getAttribute('data-duration');
     const calories = event.target.getAttribute('data-calories');
     const newItem = {
+      userId: user.userId,
       name: exercise,
       duration: duration,
       calories: calories
@@ -65,15 +69,36 @@ class SearchExercise extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          items: this.state.items.concat(data)
+          items: this.state.items.concat(data),
+          isAdded: true
         });
+        this.timer = setTimeout(() => {
+          this.setState({
+            isAdded: false
+          });
+        }, 1000);
       })
       .catch(error => console.error(error));
+  }
+
+  addedItem() {
+    return (
+      <div className="added">
+        <div className="message">
+        <p className="saved">Added!</p>
+        </div>
+      </div>
+    );
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
   }
 
   render() {
     return (
       <>
+      {this.state.isAdded && this.addedItem()}
         <form className="search" onSubmit={this.handleSearch}>
           <div className="searchbar">
             <input
@@ -120,3 +145,4 @@ class SearchExercise extends React.Component {
 }
 
 export default SearchExercise;
+SearchExercise.contextType = AppContext;

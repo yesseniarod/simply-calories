@@ -1,8 +1,18 @@
 import React from 'react';
 import SearchExercise from '../components/search-exercise';
+import AppContext from '../lib/app-context';
+import Home from '../pages/home';
 
-export default function WorkoutJournal(props) {
-  return (
+export default class WorkoutJournal extends React.Component {
+
+  render() {
+    const { user } = this.context;
+
+    if (user === null) {
+      return <Home />;
+    }
+
+    return (
     <>
     <div className="entry-heading">
       <h2 className="workout-title">Workout journal</h2>
@@ -10,5 +20,8 @@ export default function WorkoutJournal(props) {
     </div>
     <SearchExercise />
     </>
-  );
+    );
+  }
 }
+
+WorkoutJournal.contextType = AppContext;
