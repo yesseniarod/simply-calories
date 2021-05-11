@@ -5,7 +5,7 @@ export default function PageContainer(props) {
     <>
       <div className="header">
         <div className="title">
-          <h1>Simply Calories</h1>
+          <h1><a className="title-redirect"href="#home">Simply Calories</a></h1>
         </div>
         <div className="top-navigation">
           <h3 className="nav-links"><a href="#home" className="nav">Home</a></h3>

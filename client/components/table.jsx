@@ -3,6 +3,7 @@ import calorieCalculator from '../lib/calorieCalculator';
 import sumCalories from '../lib/sum';
 import AppContext from '../lib/app-context';
 import Home from '../pages/home';
+import LoginForm from '../components/login-form';
 
 class SummaryTable extends React.Component {
   constructor(props) {
@@ -67,9 +68,14 @@ class SummaryTable extends React.Component {
   }
 
   componentDidMount() {
-    this.getFoodEntries();
-    this.getWorkoutEntries();
-    this.getCalories();
+    const { user } = this.context;
+    if (user === null) {
+      return <LoginForm />;
+    } else {
+      this.getFoodEntries();
+      this.getWorkoutEntries();
+      this.getCalories();
+    }
   }
 
   getCalories() {

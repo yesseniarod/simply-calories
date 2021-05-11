@@ -20,6 +20,11 @@ h1 {
   font-family: 'Chivo', sans-serif;
 }
 
+.title-redirect {
+  text-decoration: none;
+  color: white;
+}
+
 .row {
   width: 100%;
   display: flex;
