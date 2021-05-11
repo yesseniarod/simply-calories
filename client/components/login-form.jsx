@@ -108,6 +108,7 @@ export default class LoginForm extends React.Component {
               <input
                 required
                 name="username"
+                type="text"
                 onChange={this.handleChange}
                 placeholder="demo: test" />
             </div>
@@ -128,7 +129,7 @@ export default class LoginForm extends React.Component {
                 </a>
               </div>
               <div className="login-button-container">
-                <button className="login-button">
+                <button className="login-button" type="submit">
                   {alternateButton}
                 </button>
               </div>

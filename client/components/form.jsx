@@ -117,7 +117,7 @@ class UserForm extends React.Component {
                 <option value="sedentary">Little or no exercise</option>
                 <option value="lightly active">Light exercise 1-3 days/week</option>
                 <option value="moderately active">Moderate exercise 3-5 days/week</option>
-                <option value="very active">Hard exercise 6/7 days/week</option>
+                <option value="very active">Hard exercise 6-7 days/week</option>
               </select>
             </div>
 
@@ -136,7 +136,7 @@ class UserForm extends React.Component {
           </div>
           <div className="button-container">
             {this.state.isSubmitted && this.redirectUser()}
-            <button className="submit-button">
+            <button className="submit-button" type="submit">
               <i className="fas fa-check"></i>
             </button>
           </div>

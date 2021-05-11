@@ -212,12 +212,8 @@
 
   .top-navigation {
     display: flex;
-    margin-right: 2rem;
+    list-style: none;
     visibility: visible;
-  }
-
-  .top-navigation.hide {
-    visibility: hidden;
   }
 
   .nav-links {
@@ -239,5 +235,9 @@
 
   .bottom-nav {
     visibility: hidden;
+  }
+
+  .navigation {
+    border: none;
   }
 }

@@ -128,7 +128,7 @@ class SearchExercise extends React.Component {
                        data-id={item.name[0].toUpperCase() + item.name.slice(1)}
                         data-duration={item.duration_min}
                         data-calories={item.nf_calories}
-                        onClick={this.selectExercise}>
+                        onClick={this.selectExercise} type="button">
                         <i className="fas fa-plus add-icon"
                         data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min} data-calories={item.nf_calories}></i>
                       </button>
