@@ -298,11 +298,9 @@ h3 {
 .bottom-nav {
   background-color: #16c79a;
   display: flex;
-  justify-content: space-around;
   height: 4rem;
   align-items: center;
-  padding-left: 0.5rem;
-  padding-right: 0.1rem;
+  padding-left: 0;
 }
 
 .bottom-nav.hide,
@@ -320,6 +318,10 @@ h3 {
 
 .search-result-container {
   margin-bottom: 6rem;
+}
+
+.search-results {
+  padding-left: 0;
 }
 
 .workout-title {
@@ -461,4 +463,25 @@ h2 {
 
 .saved {
   color: white;
+}
+
+.navigation {
+  border: none;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.greeting {
+  text-align: center;
+  margin-top: 6rem;
+  visibility: visible;
+}
+
+.greeting.hide {
+  visibility: hidden;
+}
+
+.greeting-message {
+  margin-right: 0;
 }

@@ -28,6 +28,41 @@
   }
 }
 
+@media screen and (max-width: 736px) and (orientation: landscape) {
+  input[type="search"] {
+    width: 50%;
+  }
+
+  li,
+  .exercise-item {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    flex-flow: wrap;
+    display: flex;
+    align-items: center;
+  }
+
+  .description {
+    margin-left: 7rem;
+  }
+
+  img {
+    position: relative;
+    top: 1.5rem;
+    width: 15%;
+  }
+
+  .modal-button-container {
+    margin-bottom: 8rem;
+  }
+
+  table {
+    width: 80%;
+    height: 220px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .title {
     padding-top: 1.5rem;
@@ -151,6 +186,16 @@
   }
 }
 
+@media screen and (max-width: 823px) and (orientation: landscape) {
+  .modal-button-container {
+    margin-bottom: 8rem;
+  }
+
+  table {
+    height: 230px;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .title {
     padding-top: 1.5rem;
@@ -196,7 +241,7 @@
     margin-left: auto;
     margin-bottom: -2rem;
     padding-left: 2rem;
-    margin-right: -5.5rem;
+    margin-right: -4.25rem;
     width: 20%;
   }
 

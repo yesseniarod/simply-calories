@@ -26,12 +26,28 @@ class FoodEntries extends React.Component {
         this.setState({
           items: data
         });
+        // const hideMessage = document.querySelector('.greeting');
+        // hideMessage.classList.add('.hide');
+        // if (this.state.items.length === 0) {
+        //   this.setState({
+        //     items: []
+        //   });
+        // }
       })
       .catch(error => console.error(error));
   }
 
+  // greeting() {
+  //   return (
+  //        <div className="greeting">
+  //        <h3 className="greeting-message">Nothing has been added to your journal</h3>
+  //        </div>
+  //   );
+  // }
+
   render() {
     const consumed = sumCalories(this.state.items);
+    // const empty = this.state.items.length === 0;
 
     const { user } = this.context;
     if (user === null) {
@@ -61,6 +77,7 @@ class FoodEntries extends React.Component {
                    </li>;
                  })
                }
+              {/* {empty && this.greeting()} */}
              </div>
 
            </ul>

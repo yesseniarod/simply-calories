@@ -15,6 +15,14 @@ class WorkoutEntries extends React.Component {
     this.getEntries();
   }
 
+  // greeting() {
+  //   return (
+  //     <div className="greeting">
+  //       <h3 className="greeting-message">Nothing has been added to your journal</h3>
+  //     </div>
+  //   );
+  // }
+
   getEntries() {
     const { user } = this.context;
     if (!user) return null;
@@ -25,6 +33,11 @@ class WorkoutEntries extends React.Component {
         this.setState({
           activity: data
         });
+        // if (this.state.activity.length === 0) {
+        //   this.setState({
+        //     activity: []
+        //   });
+        // }
       })
       .catch(error => console.error(error));
   }
@@ -32,6 +45,7 @@ class WorkoutEntries extends React.Component {
   render() {
     const burned = sumCalories(this.state.activity);
     const { user } = this.context;
+    // const empty = this.state.activity.length === 0;
 
     if (user === null) {
       return <Home/>;
@@ -46,6 +60,7 @@ class WorkoutEntries extends React.Component {
       <div className="search-result-container">
         <ul className="entries-list">
           <div className="result-list">
+            {/* {empty && this.greeting()} */}
             {
               this.state.activity.map(item => {
                 return <li key={item.workoutId}>
