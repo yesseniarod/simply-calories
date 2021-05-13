@@ -472,7 +472,7 @@ h2 {
   justify-content: center;
 }
 
-.greeting {
+/* .greeting {
   text-align: center;
   margin-top: 6rem;
   visibility: visible;
@@ -484,4 +484,12 @@ h2 {
 
 .greeting-message {
   margin-right: 0;
+} */
+
+button:hover {
+  background-color: #466bca;
+}
+
+button:active {
+  background-color: #466bca;
 }
