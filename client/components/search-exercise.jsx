@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import Loading from '../components/loading';
 
 class SearchExercise extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class SearchExercise extends React.Component {
       inputValue: '',
       result: [],
       items: [],
-      isAdded: false
+      isAdded: false,
+      isLoading: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -24,6 +26,9 @@ class SearchExercise extends React.Component {
 
   handleSearch(event) {
     event.preventDefault();
+    this.setState({
+      isLoading: true
+    });
     const content = JSON.stringify({
       query: this.state.inputValue
     });
@@ -41,6 +46,7 @@ class SearchExercise extends React.Component {
       .then(res => res.json())
       .then(input => {
         this.setState({
+          isLoading: false,
           result: this.state.result.concat(input.exercises)
         });
       })
@@ -95,6 +101,14 @@ class SearchExercise extends React.Component {
     clearTimeout(this.timer);
   }
 
+  loadingItems() {
+    const result = document.querySelector('.search-results');
+    result.classList.add('done');
+    return (
+      <Loading />
+    );
+  }
+
   render() {
     return (
       <>
@@ -112,6 +126,7 @@ class SearchExercise extends React.Component {
             </button>
           </div>
         </form>
+        {this.state.isLoading && this.loadingItems()}
         <div className="search-result-container">
           <ul className="search-results">
             <div className="result-list">

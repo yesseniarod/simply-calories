@@ -184,6 +184,10 @@
     width: 35%;
     margin-top: 2rem;
   }
+
+  .search-results {
+    padding-left: 0;
+  }
 }
 
 @media screen and (max-width: 823px) and (orientation: landscape) {
