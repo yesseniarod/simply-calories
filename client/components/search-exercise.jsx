@@ -121,7 +121,7 @@ class SearchExercise extends React.Component {
             type="search"
             placeholder="exercise + duration"
             onChange={this.handleInput} />
-            <button className="search-button">
+            <button className="search-button" aria-label="search">
               <i className="fas fa-search search-icon"></i>
             </button>
           </div>
@@ -129,7 +129,6 @@ class SearchExercise extends React.Component {
         {this.state.isLoading && this.loadingItems()}
         <div className="search-result-container">
           <ul className="search-results">
-            <div className="result-list">
               {
                 this.state.result.map(item => {
                   return <li key={item.tag_id} className="exercise-item">
@@ -143,7 +142,7 @@ class SearchExercise extends React.Component {
                        data-id={item.name[0].toUpperCase() + item.name.slice(1)}
                         data-duration={item.duration_min}
                         data-calories={item.nf_calories}
-                        onClick={this.selectExercise} type="button">
+                        onClick={this.selectExercise} type="button" aria-label="add-item">
                         <i className="fas fa-plus add-icon"
                         data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min} data-calories={item.nf_calories}></i>
                       </button>
@@ -151,7 +150,6 @@ class SearchExercise extends React.Component {
                   </li>;
                 })
               }
-            </div>
           </ul>
         </div>
       </>

@@ -138,8 +138,8 @@ class SummaryTable extends React.Component {
           </tbody>
         </table>
         <div className="modal-button-container">
-          <button className="modal-button" onClick={this.openModal}>
-            <i className="fas fa-plus"></i>
+          <button className="modal-button" onClick={this.openModal} aria-label="open-modal">
+            <i className="fas fa-plus plus-icon"></i>
           </button>
         </div>
         {this.state.modalOpen &&

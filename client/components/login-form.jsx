@@ -110,7 +110,7 @@ export default class LoginForm extends React.Component {
                 name="username"
                 type="text"
                 onChange={this.handleChange}
-                placeholder="demo: test" />
+                placeholder="test" />
             </div>
             <div className="password">
               <label className="password-label">Password</label>
@@ -120,7 +120,7 @@ export default class LoginForm extends React.Component {
                 type="password"
                 onChange={this.handleChange}
                 minLength ="6"
-                placeholder="demo: 123456"/>
+                placeholder="123456"/>
             </div>
             <div className="register">
               <div>

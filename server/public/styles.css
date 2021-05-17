@@ -22,7 +22,7 @@ h1 {
 
 .title-redirect {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 .row {
@@ -72,6 +72,10 @@ label {
 }
 
 i {
+  color: black;
+}
+
+.sign-out-icon {
   color: white;
 }
 
@@ -432,7 +436,10 @@ h2 {
   width: 5rem;
   height: 2rem;
   border-radius: 5%;
-  color: white;
+}
+
+.login-button {
+  color: black;
 }
 
 .username-label,
@@ -464,6 +471,7 @@ h2 {
   background-color: black;
   margin-right: 0.5rem;
   margin-top: 0.25rem;
+  color: white;
 }
 
 .arrow-right {
@@ -501,8 +509,10 @@ h2 {
   margin-right: 0;
 }
 
-button:hover {
+button:hover,
+.modal-button:hover {
   background-color: #466bca;
+  color: white;
 }
 
 button:active {
@@ -524,4 +534,9 @@ button:active {
 
 .search-button:hover {
   background-color: transparent;
+}
+
+.plus-icon:hover,
+.check-icon:hover {
+  color: white;
 }

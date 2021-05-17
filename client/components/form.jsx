@@ -137,7 +137,7 @@ class UserForm extends React.Component {
           <div className="button-container">
             {this.state.isSubmitted && this.redirectUser()}
             <button className="submit-button" type="submit">
-              <i className="fas fa-check"></i>
+              <i className="fas fa-check check-icon"></i>
             </button>
           </div>
         </form>

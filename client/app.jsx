@@ -86,7 +86,7 @@ export default class App extends React.Component {
               {user !== null &&
                 <button className="sign-out-button" onClick={handleSignOut}>
                   Sign out&nbsp;
-          <i className="fas fa-sign-out-alt"></i>
+          <i className="fas fa-sign-out-alt sign-out-icon"></i>
                 </button>
               }
             </div>

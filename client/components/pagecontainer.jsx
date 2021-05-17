@@ -9,13 +9,13 @@ export default function PageContainer(props) {
         </div>
           <ul className="top-navigation">
             <li className="navigation">
-              <h3 className="nav-links"><a href="#home" className="nav">Home</a></h3>
+              <h2 className="nav-links"><a href="#home" className="nav">Home</a></h2>
             </li>
             <li className="navigation">
-              <h3 className="nav-links"><a href="#food-journal" className="nav">Food</a></h3>
+              <h2 className="nav-links"><a href="#food-journal" className="nav">Food</a></h2>
             </li>
             <li className="navigation">
-              <h3 className="nav-links"><a href="#workout-journal" className="nav">Activity</a></h3>
+              <h2 className="nav-links"><a href="#workout-journal" className="nav">Activity</a></h2>
             </li>
           </ul>
       </div>
