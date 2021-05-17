@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import Loading from '../components/loading';
 
 class SearchFood extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class SearchFood extends React.Component {
       inputValue: '',
       result: [],
       items: [],
-      isAdded: false
+      isAdded: false,
+      isLoading: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -24,6 +26,9 @@ class SearchFood extends React.Component {
 
   handleSearch(event) {
     event.preventDefault();
+    this.setState({
+      isLoading: true
+    });
     fetch('https://trackapi.nutritionix.com/v2/search/instant?query=' + this.state.inputValue, {
       method: 'GET',
       headers: {
@@ -34,6 +39,7 @@ class SearchFood extends React.Component {
       .then(response => response.json())
       .then(input => {
         this.setState({
+          isLoading: false,
           result: input.branded
         });
       })
@@ -92,6 +98,15 @@ class SearchFood extends React.Component {
     clearTimeout(this.timer);
   }
 
+  loadingItems() {
+
+    const result = document.querySelector('.search-results');
+    result.classList.add('done');
+    return (
+      <Loading />
+    );
+  }
+
   render() {
     return (
       <>
@@ -106,14 +121,14 @@ class SearchFood extends React.Component {
               type="search"
               placeholder="food search"
               onChange={this.handleInput} />
-            <button className="search-button">
+            <button className="search-button" aria-label="search">
               <i className="fas fa-search search-icon"></i>
             </button>
           </div>
         </form>
+        {this.state.isLoading && this.loadingItems()}
         <div className="search-result-container">
           <ul className="search-results">
-            <div className="result-list">
             {this.state.result.map(item => {
               return <li key={item.nix_item_id}>
                 <div className="result-image">
@@ -125,13 +140,12 @@ class SearchFood extends React.Component {
                   <p className="serving">Serving: {item.serving_qty.toFixed(1)} {item.serving_unit}</p>
                 </div>
                 <div className="add">
-                  <button className="add-item" onClick={this.selectItem} data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty} data-image={item.photo.thumb} data-unit={item.serving_unit}>
+                  <button className="add-item" onClick={this.selectItem} data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty} data-image={item.photo.thumb} data-unit={item.serving_unit} type="button" aria-label="add-item">
                     <i className="fas fa-plus add-icon" data-id={item.food_name} data-calories={item.nf_calories} data-serving={item.serving_qty} data-image={item.photo.thumb} data-unit={item.serving_unit}></i>
                 </button>
                 </div>
               </li>;
             })}
-            </div>
           </ul>
         </div>
       </>

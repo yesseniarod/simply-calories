@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import Loading from '../components/loading';
 
 class SearchExercise extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class SearchExercise extends React.Component {
       inputValue: '',
       result: [],
       items: [],
-      isAdded: false
+      isAdded: false,
+      isLoading: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -24,6 +26,9 @@ class SearchExercise extends React.Component {
 
   handleSearch(event) {
     event.preventDefault();
+    this.setState({
+      isLoading: true
+    });
     const content = JSON.stringify({
       query: this.state.inputValue
     });
@@ -41,6 +46,7 @@ class SearchExercise extends React.Component {
       .then(res => res.json())
       .then(input => {
         this.setState({
+          isLoading: false,
           result: this.state.result.concat(input.exercises)
         });
       })
@@ -95,6 +101,14 @@ class SearchExercise extends React.Component {
     clearTimeout(this.timer);
   }
 
+  loadingItems() {
+    const result = document.querySelector('.search-results');
+    result.classList.add('done');
+    return (
+      <Loading />
+    );
+  }
+
   render() {
     return (
       <>
@@ -107,14 +121,14 @@ class SearchExercise extends React.Component {
             type="search"
             placeholder="exercise + duration"
             onChange={this.handleInput} />
-            <button className="search-button">
+            <button className="search-button" aria-label="search">
               <i className="fas fa-search search-icon"></i>
             </button>
           </div>
         </form>
+        {this.state.isLoading && this.loadingItems()}
         <div className="search-result-container">
           <ul className="search-results">
-            <div className="result-list">
               {
                 this.state.result.map(item => {
                   return <li key={item.tag_id} className="exercise-item">
@@ -128,7 +142,7 @@ class SearchExercise extends React.Component {
                        data-id={item.name[0].toUpperCase() + item.name.slice(1)}
                         data-duration={item.duration_min}
                         data-calories={item.nf_calories}
-                        onClick={this.selectExercise}>
+                        onClick={this.selectExercise} type="button" aria-label="add-item">
                         <i className="fas fa-plus add-icon"
                         data-id={item.name[0].toUpperCase() + item.name.slice(1)} data-duration={item.duration_min} data-calories={item.nf_calories}></i>
                       </button>
@@ -136,7 +150,6 @@ class SearchExercise extends React.Component {
                   </li>;
                 })
               }
-            </div>
           </ul>
         </div>
       </>

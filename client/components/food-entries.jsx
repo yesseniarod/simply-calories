@@ -2,17 +2,28 @@ import React from 'react';
 import sumCalories from '../lib/sum';
 import AppContext from '../lib/app-context';
 import Home from '../pages/home';
+import Loading from '../components/loading';
 
 class FoodEntries extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      isEmpty: null,
+      isLoading: false
     };
   }
 
   componentDidMount() {
+    this.setState({
+      isLoading: true
+    });
+    const entries = document.querySelector('.entries-list');
+    entries.classList.add('hide');
     this.getEntries();
+    setTimeout(() => {
+      entries.classList.remove('hide');
+    }, 1500);
   }
 
   getEntries() {
@@ -24,10 +35,33 @@ class FoodEntries extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
+          isLoading: false,
           items: data
         });
+
+        if (this.state.items.length === 0) {
+          this.setState({
+            isEmpty: true
+          });
+        }
       })
       .catch(error => console.error(error));
+  }
+
+  greeting() {
+    return (
+        <div className="greeting">
+         <h3 className="greeting-message">Nothing has been added to your journal</h3>
+        </div>
+    );
+  }
+
+  loadingItems() {
+    const entries = document.querySelector('.entries-list');
+    entries.classList.add('done');
+    return (
+      <Loading />
+    );
   }
 
   render() {
@@ -44,9 +78,11 @@ class FoodEntries extends React.Component {
          <h2 className="food-journal-title">Food journal</h2>
           <h3>{consumed} calories</h3>
         </div>
+        {this.state.isLoading && this.loadingItems()}
          <div className="food-entries-container">
-           <ul className="food-entries-list">
+           <ul className="entries-list">
              <div className="entries">
+               {this.state.isEmpty && this.greeting()}
                {
                  this.state.items.map(item => {
                    return <li key={item.foodId}>
