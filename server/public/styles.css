@@ -136,7 +136,8 @@ p {
   border-radius: 50%;
 }
 
-.modal-container {
+.modal-container,
+.search-error-container {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
@@ -154,6 +155,17 @@ p {
   justify-content: space-evenly;
   height: 200px;
   padding-top: 4rem;
+}
+
+.search-error {
+  background-color: white;
+  width: 85%;
+  display: flex;
+  justify-content: flex-start;
+  height: 200px;
+  padding-top: 4rem;
+  flex-direction: column;
+  align-items: center;
 }
 
 .utensils-icon,
@@ -430,12 +442,17 @@ h2 {
 }
 
 .login-button,
-.sign-out-button {
+.sign-out-button,
+.close-error {
   background-color: #16c79a;
   border: none;
   width: 5rem;
   height: 2rem;
   border-radius: 5%;
+}
+
+.close-error {
+  margin-top: 0.5rem;
 }
 
 .login-button {
@@ -545,4 +562,10 @@ h4 {
   font-family: 'Overpass', sans-serif;
   font-weight: 300;
   font-size: 0.87rem;
+}
+
+.search-error-message {
+  font-family: 'Overpass', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
 }

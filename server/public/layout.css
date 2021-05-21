@@ -26,6 +26,10 @@
     margin: 0;
     padding-top: 3rem;
   }
+
+  .search-error {
+    width: 97%;
+  }
 }
 
 @media screen and (max-width: 736px) and (orientation: landscape) {
@@ -187,6 +191,10 @@
 
   .search-results {
     padding-left: 0;
+  }
+
+  .search-error {
+    width: 45%;
   }
 }
 

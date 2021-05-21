@@ -10,11 +10,13 @@ class SearchExercise extends React.Component {
       result: [],
       items: [],
       isAdded: false,
-      isLoading: false
+      isLoading: false,
+      error: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.selectExercise = this.selectExercise.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   handleInput(event) {
@@ -49,8 +51,30 @@ class SearchExercise extends React.Component {
           isLoading: false,
           result: this.state.result.concat(input.exercises)
         });
+        if (this.state.result.length === 0) {
+          this.setState({
+            error: true
+          });
+        }
       })
       .catch(error => console.error(error));
+  }
+
+  handleError() {
+    return (
+      <div className='search-error-container'>
+        <div className='search-error'>
+          <div className='search-error-message'>Oops..we can&apos;t find what you&apos;re looking for</div>
+          <button className='close-error' type='button' onClick={this.closeModal}>Close</button>
+        </div>
+      </div>
+    );
+  }
+
+  closeModal() {
+    this.setState({
+      error: false
+    });
   }
 
   selectExercise(event) {
@@ -112,6 +136,7 @@ class SearchExercise extends React.Component {
   render() {
     return (
       <>
+      {this.state.error && this.handleError()}
       {this.state.isAdded && this.addedItem()}
         <form className="search" onSubmit={this.handleSearch}>
           <div className="searchbar">
