@@ -75,21 +75,21 @@ export default class LoginForm extends React.Component {
 
   render() {
     const { action } = this.props;
-    const alternateText = action === 'sign-in'
-      ? 'Log In'
-      : 'Sign Up';
-    const alternateLink = action === 'sign-in'
-      ? 'Register'
-      : 'Sign In';
-    const alternateButton = action === 'sign-in'
-      ? 'Log In'
+    const alternateText = action === 'sign-up'
+      ? 'Sign Up'
+      : 'Log In';
+    const alternateLink = action === 'sign-up'
+      ? 'Sign In'
       : 'Register';
-    const alternateHref = action === 'sign-in'
-      ? '#sign-up'
-      : '#sign-in';
-    const alternateGreeting = action === 'sign-in'
-      ? 'Welcome back!'
-      : 'Welcome to Simply Calories!';
+    const alternateButton = action === 'sign-up'
+      ? 'Register'
+      : 'Log In';
+    const alternateHref = action === 'sign-up'
+      ? '#sign-in'
+      : '#sign-up';
+    const alternateGreeting = action === 'sign-up'
+      ? 'Welcome to Simply Calories!'
+      : 'Welcome back!';
 
     return (
         <div className="introduction">
