@@ -96,10 +96,14 @@ export default class LoginForm extends React.Component {
     const alternatePlaceHolderPassword = action === 'sign-up'
       ? ''
       : '123456';
+    const alternateDescription = action === 'sign-up'
+      ? "Counting calories shouldn't be difficult, we're here to help"
+      : 'Making calories simple one step at a time';
 
     return (
         <div className="introduction">
           <h2>{alternateGreeting}</h2>
+          <h4>{alternateDescription}</h4>
         <div className="login-container">
           <form onSubmit={this.handleSubmit}>
             {(this.state.error) && this.handleError()}
