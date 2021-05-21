@@ -90,6 +90,12 @@ export default class LoginForm extends React.Component {
     const alternateGreeting = action === 'sign-up'
       ? 'Welcome to Simply Calories!'
       : 'Welcome back!';
+    const alternatePlaceHolderUsername = action === 'sign-up'
+      ? ''
+      : 'test';
+    const alternatePlaceHolderPassword = action === 'sign-up'
+      ? ''
+      : '123456';
 
     return (
         <div className="introduction">
@@ -110,7 +116,7 @@ export default class LoginForm extends React.Component {
                 name="username"
                 type="text"
                 onChange={this.handleChange}
-                placeholder="test" />
+                placeholder={alternatePlaceHolderUsername} />
             </div>
             <div className="password">
               <label className="password-label">Password</label>
@@ -120,7 +126,7 @@ export default class LoginForm extends React.Component {
                 type="password"
                 onChange={this.handleChange}
                 minLength ="6"
-                placeholder="123456"/>
+                placeholder={alternatePlaceHolderPassword}/>
             </div>
             <div className="register">
               <div>
