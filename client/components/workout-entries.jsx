@@ -73,7 +73,9 @@ class WorkoutEntries extends React.Component {
     return (
       <>
       <div className="entry-heading">
-        <h2 className="workout-title">Workout journal</h2>
+        <h2 className="workout-title">
+          <a href="#workout-journal" className="redirect-entries">Workout journal</a>
+        </h2>
         <h3>{burned} calories</h3>
       </div>
       <div className="search-result-container">

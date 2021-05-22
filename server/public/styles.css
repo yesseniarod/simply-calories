@@ -569,3 +569,14 @@ h4 {
   font-weight: 300;
   font-size: 1rem;
 }
+
+.redirect-entries {
+  text-decoration: none;
+  color: black;
+}
+
+.redirect-entries:hover {
+  cursor: pointer;
+  color: #466bca;
+  text-decoration: underline;
+}
