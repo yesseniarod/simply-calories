@@ -18,7 +18,6 @@ class SearchFood extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.selectItem = this.selectItem.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.handleConnection = this.handleConnection.bind(this);
   }
 
   handleInput(event) {
