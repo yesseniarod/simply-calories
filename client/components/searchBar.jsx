@@ -11,12 +11,14 @@ class SearchFood extends React.Component {
       items: [],
       isAdded: false,
       isLoading: false,
-      error: false
+      error: false,
+      networkError: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.selectItem = this.selectItem.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleConnection = this.handleConnection.bind(this);
   }
 
   handleInput(event) {
@@ -52,6 +54,10 @@ class SearchFood extends React.Component {
       })
       .catch(error => {
         console.error(error);
+        this.setState({
+          networkError: true,
+          isLoading: false
+        });
       });
   }
 
@@ -66,9 +72,21 @@ class SearchFood extends React.Component {
     );
   }
 
+  handleConnection() {
+    return (
+      <div className='search-error-container'>
+        <div className='search-error'>
+          <div className='search-error-message'>Please check your connection and try again</div>
+          <button className='close-error' type='button' onClick={this.closeModal}>Close</button>
+        </div>
+      </div>
+    );
+  }
+
   closeModal() {
     this.setState({
-      error: false
+      error: false,
+      networkError: false
     });
   }
 
@@ -138,6 +156,7 @@ class SearchFood extends React.Component {
       <>
         {this.state.error && this.handleError()}
         {this.state.isAdded && this.addedItem()}
+        {this.state.networkError && this.handleConnection()}
         <form
           className="search"
           onSubmit={this.handleSearch}>

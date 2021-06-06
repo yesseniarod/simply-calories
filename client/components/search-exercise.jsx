@@ -11,7 +11,8 @@ class SearchExercise extends React.Component {
       items: [],
       isAdded: false,
       isLoading: false,
-      error: false
+      error: false,
+      networkError: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -57,7 +58,14 @@ class SearchExercise extends React.Component {
           });
         }
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+        this.setState({
+          networkError: true,
+          isLoading: false
+        });
+      });
+
   }
 
   handleError() {
@@ -71,9 +79,21 @@ class SearchExercise extends React.Component {
     );
   }
 
+  handleConnection() {
+    return (
+      <div className='search-error-container'>
+        <div className='search-error'>
+          <div className='search-error-message'>Please check your connection and try again</div>
+          <button className='close-error' type='button' onClick={this.closeModal}>Close</button>
+        </div>
+      </div>
+    );
+  }
+
   closeModal() {
     this.setState({
-      error: false
+      error: false,
+      networkError: false
     });
   }
 
@@ -138,6 +158,7 @@ class SearchExercise extends React.Component {
       <>
       {this.state.error && this.handleError()}
       {this.state.isAdded && this.addedItem()}
+      {this.state.networkError && this.handleConnection()}
         <form className="search" onSubmit={this.handleSearch}>
           <div className="searchbar">
             <input
