@@ -26,12 +26,15 @@ export default function PageContainer(props) {
       <ul className="bottom-nav">
         <li className="navigation">
             <a href="#home" aria-label="navigate home"><i className="far fa-calendar calendar-icon"></i></a>
+            <p className="icon-label">Home</p>
         </li>
         <li className="navigation">
             <a href="#food-journal" aria-label="navigate food-journal"><i className="fas fa-utensils nav-food"></i></a>
+            <p className="icon-label">Food</p>
         </li>
         <li className="navigation">
           <a href="#workout-journal" aria-label="navigate workout-journal"><i className="fas fa-dumbbell nav-workout"></i></a>
+          <p className="icon-label">Activity</p>
           </li>
       </ul>
       </div>

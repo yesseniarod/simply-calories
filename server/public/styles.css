@@ -515,6 +515,12 @@ h2 {
   margin-bottom: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.icon-label {
+  margin-top: 0;
 }
 
 .greeting {
