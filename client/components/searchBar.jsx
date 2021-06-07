@@ -10,11 +10,14 @@ class SearchFood extends React.Component {
       result: [],
       items: [],
       isAdded: false,
-      isLoading: false
+      isLoading: false,
+      error: false,
+      networkError: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.selectItem = this.selectItem.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   handleInput(event) {
@@ -42,8 +45,48 @@ class SearchFood extends React.Component {
           isLoading: false,
           result: input.branded
         });
+        if (this.state.result.length === 0) {
+          this.setState({
+            error: true
+          });
+        }
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+        this.setState({
+          networkError: true,
+          isLoading: false
+        });
+      });
+  }
+
+  handleError() {
+    return (
+      <div className='search-error-container'>
+        <div className='search-error'>
+          <div className='search-error-message'>Oops..we can&apos;t find what you&apos;re looking for</div>
+          <button className='close-error' type='button' onClick={this.closeModal}>Close</button>
+        </div>
+      </div>
+    );
+  }
+
+  handleConnection() {
+    return (
+      <div className='search-error-container'>
+        <div className='search-error'>
+          <div className='search-error-message'>Please check your connection and try again</div>
+          <button className='close-error' type='button' onClick={this.closeModal}>Close</button>
+        </div>
+      </div>
+    );
+  }
+
+  closeModal() {
+    this.setState({
+      error: false,
+      networkError: false
+    });
   }
 
   selectItem(event) {
@@ -110,7 +153,9 @@ class SearchFood extends React.Component {
   render() {
     return (
       <>
+        {this.state.error && this.handleError()}
         {this.state.isAdded && this.addedItem()}
+        {this.state.networkError && this.handleConnection()}
         <form
           className="search"
           onSubmit={this.handleSearch}>

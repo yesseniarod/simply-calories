@@ -75,7 +75,7 @@ class FoodEntries extends React.Component {
     return (
        <>
        <div className="entry-heading">
-         <h2 className="food-journal-title">Food journal</h2>
+         <h2 className="food-journal-title"><a className="redirect-entries" href="#food-journal">Food journal</a></h2>
           <h3>{consumed} calories</h3>
         </div>
         {this.state.isLoading && this.loadingItems()}

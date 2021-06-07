@@ -75,25 +75,35 @@ export default class LoginForm extends React.Component {
 
   render() {
     const { action } = this.props;
-    const alternateText = action === 'sign-in'
-      ? 'Log In'
-      : 'Sign Up';
-    const alternateLink = action === 'sign-in'
-      ? 'Register'
-      : 'Sign In';
-    const alternateButton = action === 'sign-in'
-      ? 'Log In'
+    const alternateText = action === 'sign-up'
+      ? 'Sign Up'
+      : 'Log In';
+    const alternateLink = action === 'sign-up'
+      ? 'Sign In'
       : 'Register';
-    const alternateHref = action === 'sign-in'
-      ? '#sign-up'
-      : '#sign-in';
-    const alternateGreeting = action === 'sign-in'
-      ? 'Welcome back!'
-      : 'Welcome to Simply Calories!';
+    const alternateButton = action === 'sign-up'
+      ? 'Register'
+      : 'Log In';
+    const alternateHref = action === 'sign-up'
+      ? '#sign-in'
+      : '#sign-up';
+    const alternateGreeting = action === 'sign-up'
+      ? 'Welcome to Simply Calories!'
+      : 'Welcome back!';
+    const alternatePlaceHolderUsername = action === 'sign-up'
+      ? ''
+      : 'test';
+    const alternatePlaceHolderPassword = action === 'sign-up'
+      ? ''
+      : '123456';
+    const alternateDescription = action === 'sign-up'
+      ? "Counting calories shouldn't be difficult, we're here to help"
+      : 'Making calories simple one step at a time';
 
     return (
         <div className="introduction">
           <h2>{alternateGreeting}</h2>
+          <h4>{alternateDescription}</h4>
         <div className="login-container">
           <form onSubmit={this.handleSubmit}>
             {(this.state.error) && this.handleError()}
@@ -110,7 +120,7 @@ export default class LoginForm extends React.Component {
                 name="username"
                 type="text"
                 onChange={this.handleChange}
-                placeholder="test" />
+                placeholder={alternatePlaceHolderUsername} />
             </div>
             <div className="password">
               <label className="password-label">Password</label>
@@ -120,7 +130,7 @@ export default class LoginForm extends React.Component {
                 type="password"
                 onChange={this.handleChange}
                 minLength ="6"
-                placeholder="123456"/>
+                placeholder={alternatePlaceHolderPassword}/>
             </div>
             <div className="register">
               <div>
