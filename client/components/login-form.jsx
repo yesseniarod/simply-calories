@@ -22,7 +22,7 @@ export default class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { action } = this.props;
+    let { action } = this.props;
     const req = {
       method: 'POST',
       headers: {
@@ -30,26 +30,30 @@ export default class LoginForm extends React.Component {
       },
       body: JSON.stringify(this.state)
     };
-    fetch(`/api/credentials/${action}`, req)
-      .then(res => res.json())
-      .then(result => {
-        if (result === 23505) {
-          this.setState({
-            existingAccount: true
-          });
-        } else {
-          if (action === 'sign-up') {
-            window.location.hash = 'profile';
-          } else if (result.user && result.token) {
-            this.props.onSignIn(result);
+
+    if (window.location.hash === '') {
+      action = 'sign-in';
+      fetch(`/api/credentials/${action}`, req)
+        .then(res => res.json())
+        .then(result => {
+          if (result === 23505) {
+            this.setState({
+              existingAccount: true
+            });
+          } else {
+            if (action === 'sign-up') {
+              window.location.hash = 'profile';
+            } else if (result.user && result.token) {
+              this.props.onSignIn(result);
+            }
           }
-        }
-      })
-      .catch(error => {
-        this.setState({
-          error: error.message
+        })
+        .catch(error => {
+          this.setState({
+            error: error.message
+          });
         });
-      });
+    }
   }
 
   handleError() {
