@@ -25,7 +25,7 @@ export default class LoginForm extends React.Component {
     let { action } = this.props;
     action = window.location.hash === ''
       ? 'sign-in'
-      : this.props;
+      : action;
 
     const req = {
       method: 'POST',
