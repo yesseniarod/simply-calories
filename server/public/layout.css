@@ -139,6 +139,7 @@
   .description {
     margin-left: -18rem;
     margin-bottom: -1.5rem;
+    width: 50%;
   }
 
   .search {
@@ -147,6 +148,7 @@
 
   .result-image {
     margin-bottom: 1.5rem;
+    width: 400px;
   }
 
   .add {
@@ -296,5 +298,9 @@
 
   .navigation {
     border: none;
+  }
+
+  .result-image {
+    width: 480px;
   }
 }
