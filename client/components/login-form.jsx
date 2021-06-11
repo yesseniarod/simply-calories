@@ -35,9 +35,6 @@ export default class LoginForm extends React.Component {
       body: JSON.stringify(this.state)
     };
 
-    // if (window.location.hash === '') {
-    //   action = 'sign-in';
-
     fetch(`/api/credentials/${action}`, req)
       .then(res => res.json())
       .then(result => {
